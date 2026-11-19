@@ -35,7 +35,8 @@ class AppConfig {
   );
   static const String _allowedOrigins = String.fromEnvironment(
     'API_ALLOWED_ORIGINS',
-    defaultValue: 'https://api-alt.example.test',
+    defaultValue:
+        'https://api.example.test,https://api-alt.example.test',
   );
 
   /// 빌드 때 주소를 넘겼는지. 넘겼다면 그 값이 무조건 이긴다.
