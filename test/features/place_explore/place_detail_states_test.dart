@@ -36,6 +36,7 @@ void main() {
     WidgetTester tester,
     Future<http.Response> Function(http.Request request) handler, {
     bool withCoordinates = true,
+    bool loadPhotos = true,
   }) {
     return http.runWithClient(() async {
       await tester.pumpWidget(
@@ -50,6 +51,10 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
+      if (loadPhotos && withCoordinates) {
+        await tester.tap(find.byKey(const Key('place-photos-load')));
+        await tester.pumpAndSettle();
+      }
     }, () => MockClient(handler));
   }
 
@@ -156,6 +161,22 @@ void main() {
     });
 
     expect(find.text('사진을 불러오지 못했어요.'), findsOneWidget);
+    expect(find.byType(PlacePhotoHero), findsNothing);
+  });
+
+  testWidgets('시트를 여는 것만으로는 사진을 청하지 않는다', (tester) async {
+    var photoRequests = 0;
+    await pump(tester, (request) async {
+      if (request.url.path == '/api/v1/places/photos') {
+        photoRequests++;
+        return jsonBody({'photos': []});
+      }
+      return jsonBody({'query': '소양강스카이워크', 'reviews': [], 'count': 0});
+    }, loadPhotos: false);
+
+    expect(photoRequests, 0);
+    expect(find.byKey(const Key('place-photos-load')), findsOneWidget);
+    expect(find.byKey(const Key('place-original-map')), findsOneWidget);
     expect(find.byType(PlacePhotoHero), findsNothing);
   });
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../common/widgets/review_summary_section.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../../common/constants/category_tags.dart';
 import '../../../common/theme/app_colors.dart';
@@ -67,6 +68,10 @@ class _PlaceBottomSheetState extends State<PlaceBottomSheet> {
   /// 사진 조회가 실패했는지. 원래 사진이 없는 장소와 갈라 말하기 위해 남긴다.
   bool _photosFailed = false;
 
+  /// 사용자가 '사진 보기'를 눌렀는지. 제3자 사진은 누를 때만 받아 온다 — 시트를
+  /// 여는 것만으로 남의 사진을 내려받지 않고, 서버 쪽 유료 조회도 하지 않는다.
+  bool _photosRequested = false;
+
   final List<BlogReview> _reviews = [];
   bool _reviewsLoading = true;
   bool _moreLoading = false;
@@ -79,10 +84,29 @@ class _PlaceBottomSheetState extends State<PlaceBottomSheet> {
   void initState() {
     super.initState();
     _isAdded = widget.isAdded;
-    // 요약·후기·사진은 장소명으로 물어본다. 시트는 기다리지 않고 먼저 열리고
-    // 받아온 뒤에 그 자리만 채워진다.
+    // 요약·후기는 장소명으로 물어본다. 시트는 기다리지 않고 먼저 열리고
+    // 받아온 뒤에 그 자리만 채워진다. 사진은 누를 때 받는다.
     _loadFirstPage();
+  }
+
+  void _requestPhotos() {
+    if (_photosRequested) return;
+    setState(() => _photosRequested = true);
     _loadPhotos();
+  }
+
+  /// 사진을 받기 전에 보여 주는 원본 지도 링크. 좌표로 연다.
+  Future<void> _openOriginalMap() async {
+    final lat = widget.latitude;
+    final lng = widget.longitude;
+    if (lat == null || lng == null) return;
+    await launchUrl(
+      Uri.https('www.google.com', '/maps/search/', {
+        'api': '1',
+        'query': '$lat,$lng',
+      }),
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   /// 사진을 받아 온다. 좌표가 없으면 아예 요청하지 않는다 — 이름만으로 찾은
@@ -310,6 +334,31 @@ class _PlaceBottomSheetState extends State<PlaceBottomSheet> {
   /// 기다리는 동안에만 빈 자리를 잡아 둔다. 받을 것이 없다고 판명된 뒤까지
   /// 회색 칸을 남기면 모든 장소에 고장난 자리가 하나씩 생긴다.
   Widget _buildPhotoHero() {
+    if (widget.latitude == null || widget.longitude == null) {
+      return const SizedBox.shrink();
+    }
+    if (!_photosRequested) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Wrap(
+          spacing: 4,
+          children: [
+            TextButton.icon(
+              key: const Key('place-photos-load'),
+              onPressed: _requestPhotos,
+              icon: const Icon(Icons.photo_outlined, size: 16),
+              label: const Text('사진 보기'),
+            ),
+            TextButton.icon(
+              key: const Key('place-original-map'),
+              onPressed: _openOriginalMap,
+              icon: const Icon(Icons.open_in_new_rounded, size: 16),
+              label: const Text('지도에서 보기'),
+            ),
+          ],
+        ),
+      );
+    }
     if (_photosFailed) {
       return Padding(
         padding: const EdgeInsets.only(top: 14),
