@@ -54,8 +54,9 @@ class _TripStep5ScreenState extends State<TripStep5Screen> {
 
 
   Future<void> _loadGeoJson() async {
-    final sidoStr = await rootBundle.loadString('assets/geo/TL_SCCO_CTPRVN.json');
-    final sggStr = await rootBundle.loadString('assets/geo/TL_SCCO_SIG.json');
+    // 시도·시군구 윤곽: OpenStreetMap 자료(ODbL), scripts/build_geo.py 로 만든다.
+    final sidoStr = await rootBundle.loadString('assets/geo/provinces.geojson');
+    final sggStr = await rootBundle.loadString('assets/geo/districts.geojson');
     _sidoGeo = json.decode(sidoStr) as Map<String, dynamic>;
     _sggGeo = json.decode(sggStr) as Map<String, dynamic>;
   }
@@ -416,6 +417,12 @@ class _TripStep5ScreenState extends State<TripStep5Screen> {
               },
             ),
           ),
+          // 윤곽 자료 출처 표시(ODbL). 지도 회사 로고가 왼쪽 아래에 있어 오른쪽에 둔다.
+          const Positioned(
+            right: 8,
+            bottom: 6,
+            child: IgnorePointer(child: OsmAttribution()),
+          ),
           // ── 글라스 +/- 버튼 ──
           Positioned(
             right: 14,
@@ -468,6 +475,27 @@ class _TripStep5ScreenState extends State<TripStep5Screen> {
             child: Icon(icon, size: 22, color: AppColors.primaryScale[500]),
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// 지도 위 행정경계 윤곽의 출처 표시.
+class OsmAttribution extends StatelessWidget {
+  const OsmAttribution({super.key});
+
+  static const text = '© OpenStreetMap contributors';
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+        child: Text(text, style: TextStyle(fontSize: 10, color: Colors.black87)),
       ),
     );
   }
