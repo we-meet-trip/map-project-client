@@ -1,4 +1,4 @@
-package com.example.map_service_client
+package map.project.client
 
 import io.flutter.embedding.android.FlutterActivity
 
