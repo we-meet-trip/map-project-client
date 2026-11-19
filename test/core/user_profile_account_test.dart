@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:map_service_client/core/state/user_repository.dart';
-import 'package:map_service_client/data/local/profile_local_store.dart';
+import 'package:map_project_client/core/state/user_repository.dart';
+import 'package:map_project_client/data/local/profile_local_store.dart';
 
 /// 로그인한 사람의 이름이 화면에 나오게 하는 규칙을 확인한다.
 ///

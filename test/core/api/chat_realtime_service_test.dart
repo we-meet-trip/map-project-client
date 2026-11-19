@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/chat_realtime_service.dart';
+import 'package:map_project_client/core/api/chat_realtime_service.dart';
 import 'package:stomp_dart_client/stomp_dart_client.dart';
 
 void main() {

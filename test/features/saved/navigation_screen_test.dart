@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/maps/map_adapter.dart';
-import 'package:map_service_client/core/state/trip_repository.dart';
-import 'package:map_service_client/features/saved/screens/navigation_screen.dart';
+import 'package:map_project_client/core/maps/map_adapter.dart';
+import 'package:map_project_client/core/state/trip_repository.dart';
+import 'package:map_project_client/features/saved/screens/navigation_screen.dart';
 
 void main() {
   testWidgets('빈 일정은 예시 경로와 위치 요청 없이 저장 목록으로 복구한다', (tester) async {

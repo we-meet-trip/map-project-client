@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
 
 /// 생성 응답의 warnings 와 방문지 타임라인 필드 해석 검증.
 ///

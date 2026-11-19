@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/state/auth_store.dart';
-import 'package:map_service_client/core/state/service_consent_store.dart';
-import 'package:map_service_client/features/vision/models/vision_models.dart';
-import 'package:map_service_client/features/vision/services/vision_ws_service.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
+import 'package:map_project_client/core/state/service_consent_store.dart';
+import 'package:map_project_client/features/vision/models/vision_models.dart';
+import 'package:map_project_client/features/vision/services/vision_ws_service.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import '../support/policy_versions.dart';
 

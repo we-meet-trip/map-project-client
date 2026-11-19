@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/widgets/draggable_vision_button.dart';
+import 'package:map_project_client/common/widgets/draggable_vision_button.dart';
 
 void main() {
   const size = Size(402, 874);

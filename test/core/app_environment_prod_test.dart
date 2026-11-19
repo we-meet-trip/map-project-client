@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/config/app_environment.dart';
-import 'package:map_service_client/core/services/deep_link_service.dart';
+import 'package:map_project_client/core/config/app_environment.dart';
+import 'package:map_project_client/core/services/deep_link_service.dart';
 
 void main() {
   group('production build identity', () {

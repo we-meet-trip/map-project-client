@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:map_service_client/data/local/profile_local_store.dart';
-import 'package:map_service_client/features/mypage/screens/mypage_screen.dart';
+import 'package:map_project_client/data/local/profile_local_store.dart';
+import 'package:map_project_client/features/mypage/screens/mypage_screen.dart';
 
 /// 마이페이지 메뉴 구성을 고정한다.
 ///

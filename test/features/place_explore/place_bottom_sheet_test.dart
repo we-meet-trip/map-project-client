@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/place_explore/models/place_detail.dart';
-import 'package:map_service_client/features/place_explore/widgets/place_bottom_sheet.dart';
+import 'package:map_project_client/features/place_explore/models/place_detail.dart';
+import 'package:map_project_client/features/place_explore/widgets/place_bottom_sheet.dart';
 
 /// 후기를 못 받아왔을 때도 장소 팝업이 열리는지 검증.
 ///

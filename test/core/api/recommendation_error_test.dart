@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

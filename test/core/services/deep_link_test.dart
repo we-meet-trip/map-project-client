@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/services/deep_link_service.dart';
+import 'package:map_project_client/core/services/deep_link_service.dart';
 
 /// 링크가 앱을 여는 길은 셋(웹 주소·앱 전용 주소·그 외)이고, 셋 중 어느 것도
 /// 조용히 무시되면 안 된다. 무시되면 링크를 눌러도 아무 일이 없는 것처럼 보인다.

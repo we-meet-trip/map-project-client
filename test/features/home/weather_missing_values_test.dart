@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/home/models/weather_data.dart';
+import 'package:map_project_client/features/home/models/weather_data.dart';
 
 /// 서버는 미리 받아 둔 값을 내려주고, 그 값이 너무 오래됐으면 해당 항목을
 /// 비워 보낸다. 화면이 그 부재를 견디는지 여기서 고정한다.

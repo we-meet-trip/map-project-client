@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/constants/interests.dart';
-import 'package:map_service_client/common/constants/category_tags.dart';
+import 'package:map_project_client/common/constants/interests.dart';
+import 'package:map_project_client/common/constants/category_tags.dart';
 
 /// 장소 분류를 화면이 쓰는 관심사 이름으로 바꾸는 규칙 검증.
 ///

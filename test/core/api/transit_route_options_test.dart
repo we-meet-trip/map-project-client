@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/transit_route_options_service.dart';
+import 'package:map_project_client/core/api/transit_route_options_service.dart';
 
 /// 통합 길찾기 경로 후보 응답 해석 검증.
 ///

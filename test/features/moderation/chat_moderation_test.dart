@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/chat_realtime_service.dart';
-import 'package:map_service_client/core/api/moderation_api_service.dart';
-import 'package:map_service_client/data/local/chat_outbox_store.dart';
-import 'package:map_service_client/data/models/chat_message.dart';
-import 'package:map_service_client/data/repositories/api_chat_repository.dart';
-import 'package:map_service_client/data/repositories/invite_link_repository.dart';
-import 'package:map_service_client/features/chat/providers/chat_room_detail_provider.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/chat_realtime_service.dart';
+import 'package:map_project_client/core/api/moderation_api_service.dart';
+import 'package:map_project_client/data/local/chat_outbox_store.dart';
+import 'package:map_project_client/data/models/chat_message.dart';
+import 'package:map_project_client/data/repositories/api_chat_repository.dart';
+import 'package:map_project_client/data/repositories/invite_link_repository.dart';
+import 'package:map_project_client/features/chat/providers/chat_room_detail_provider.dart';
 
 ChatMessage message(int seq, int sender) => ChatMessage(
   roomId: 7,

@@ -7,9 +7,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/maps/map_bootstrap.dart';
-import 'package:map_service_client/core/state/trip_repository.dart';
-import 'package:map_service_client/features/trip/screens/trip_created_screen.dart';
+import 'package:map_project_client/core/maps/map_bootstrap.dart';
+import 'package:map_project_client/core/state/trip_repository.dart';
+import 'package:map_project_client/features/trip/screens/trip_created_screen.dart';
 
 import 'google_map_screen_test.dart' show stop;
 

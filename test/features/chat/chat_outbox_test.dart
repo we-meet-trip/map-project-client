@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/chat_realtime_service.dart';
-import 'package:map_service_client/data/models/chat_message.dart';
-import 'package:map_service_client/data/models/chat_room.dart';
-import 'package:map_service_client/data/local/chat_outbox_store.dart';
-import 'package:map_service_client/data/repositories/chat_repository.dart';
-import 'package:map_service_client/data/repositories/invite_link_repository.dart';
-import 'package:map_service_client/features/chat/providers/chat_room_detail_provider.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/chat_realtime_service.dart';
+import 'package:map_project_client/data/models/chat_message.dart';
+import 'package:map_project_client/data/models/chat_room.dart';
+import 'package:map_project_client/data/local/chat_outbox_store.dart';
+import 'package:map_project_client/data/repositories/chat_repository.dart';
+import 'package:map_project_client/data/repositories/invite_link_repository.dart';
+import 'package:map_project_client/features/chat/providers/chat_room_detail_provider.dart';
 
 /// 나가지 못한 말을 어떻게 다루는지 본다.
 ///

@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/kakao_login.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/kakao_login.dart';
 
 /// 카카오 로그인이 어느 경로를 쓰는지가 이 기능의 전부다.
 ///

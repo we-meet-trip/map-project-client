@@ -5,7 +5,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/trip/widgets/roulette_wheel.dart';
+import 'package:map_project_client/features/trip/widgets/roulette_wheel.dart';
 
 void main() {
   test('멈춘 각도에서 읽은 칸이 뽑은 칸과 같다', () {

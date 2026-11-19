@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/chat/widgets/chat_room_menu_sheet.dart';
+import 'package:map_project_client/features/chat/widgets/chat_room_menu_sheet.dart';
 
 Widget _wrap(Widget child) => MaterialApp(home: Scaffold(body: child));
 

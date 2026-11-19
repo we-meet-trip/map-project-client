@@ -6,9 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/state/auth_store.dart';
-import 'package:map_service_client/core/state/user_repository.dart';
-import 'package:map_service_client/features/mypage/screens/profile_edit_screen.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
+import 'package:map_project_client/core/state/user_repository.dart';
+import 'package:map_project_client/features/mypage/screens/profile_edit_screen.dart';
 
 http.Response account(String email) => http.Response(
   jsonEncode({'id': 1, 'nickname': '시험 계정', 'email': email}),

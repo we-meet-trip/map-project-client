@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
-import 'package:map_service_client/core/state/trip_repository.dart';
-import 'package:map_service_client/features/place_explore/data/trip_plan_place_explore_repository.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/core/state/trip_repository.dart';
+import 'package:map_project_client/features/place_explore/data/trip_plan_place_explore_repository.dart';
 
 /// 탐색 지도가 방금 만든 일정의 장소를 그대로 쓰는지 검증.
 ///

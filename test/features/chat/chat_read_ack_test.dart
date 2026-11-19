@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/chat_realtime_service.dart';
-import 'package:map_service_client/core/state/auth_store.dart';
-import 'package:map_service_client/data/local/chat_outbox_store.dart';
-import 'package:map_service_client/data/models/chat_message.dart';
-import 'package:map_service_client/data/repositories/api_chat_repository.dart';
-import 'package:map_service_client/data/repositories/invite_link_repository.dart';
-import 'package:map_service_client/features/chat/providers/chat_room_detail_provider.dart';
+import 'package:map_project_client/core/api/chat_realtime_service.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
+import 'package:map_project_client/data/local/chat_outbox_store.dart';
+import 'package:map_project_client/data/models/chat_message.dart';
+import 'package:map_project_client/data/repositories/api_chat_repository.dart';
+import 'package:map_project_client/data/repositories/invite_link_repository.dart';
+import 'package:map_project_client/features/chat/providers/chat_room_detail_provider.dart';
 
 /// 조회가 읽음을 올리고 그 읽음이 다시 조회를 부르면 방을 열어 둔 내내 멈추지 않는다.
 /// 화면은 그 사이 계속 비워졌다 그려져 깜빡이고, 대화는 거의 보이지 않는다.

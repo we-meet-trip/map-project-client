@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/api/kakao_address_service.dart';
+import 'package:map_project_client/core/api/kakao_address_service.dart';
 
 http.Response _json(Object body) => http.Response(
   jsonEncode(body),

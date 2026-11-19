@@ -10,8 +10,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
-import 'package:map_service_client/common/widgets/app_loading_indicator.dart';
-import 'package:map_service_client/features/saved/utils/open_schedule.dart';
+import 'package:map_project_client/common/widgets/app_loading_indicator.dart';
+import 'package:map_project_client/features/saved/utils/open_schedule.dart';
 
 const _listMark = '저장 목록';
 

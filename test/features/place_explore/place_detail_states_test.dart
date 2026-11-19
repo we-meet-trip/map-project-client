@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/common/widgets/place_photo_strip.dart';
-import 'package:map_service_client/features/place_explore/models/place_detail.dart';
-import 'package:map_service_client/features/place_explore/widgets/place_bottom_sheet.dart';
+import 'package:map_project_client/common/widgets/place_photo_strip.dart';
+import 'package:map_project_client/features/place_explore/models/place_detail.dart';
+import 'package:map_project_client/features/place_explore/widgets/place_bottom_sheet.dart';
 
 /// 장소 상세가 네 가지 사정을 화면에서 갈라 말하는지 본다.
 ///

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/config/app_environment.dart';
+import 'package:map_project_client/core/config/app_environment.dart';
 
 void main() {
   test('default test app cannot share the production native identity', () {

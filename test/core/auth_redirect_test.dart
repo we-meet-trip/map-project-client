@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/router/app_router.dart';
+import 'package:map_project_client/core/router/app_router.dart';
 
 /// 관문이 무엇을 막고 무엇을 여는지 고정한다. 권한 고지 관문이 먼저,
 /// 로그인 관문이 다음이다.

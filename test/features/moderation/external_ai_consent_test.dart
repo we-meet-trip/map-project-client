@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/widgets/external_ai_consent.dart';
+import 'package:map_project_client/common/widgets/external_ai_consent.dart';
 
 void main() {
   testWidgets(

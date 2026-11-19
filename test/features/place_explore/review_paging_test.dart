@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/place_explore/utils/review_paging.dart';
+import 'package:map_project_client/features/place_explore/utils/review_paging.dart';
 
 /// 후기 더보기 구간 계산 검증.
 ///

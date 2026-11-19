@@ -4,7 +4,7 @@
 // 있다. 주소가 없으면 이미지를 못 띄우고, 이름이 없는 표기는 제공자를 밝히지
 // 못한다. 이런 항목이 남으면 빈 타일이나 이름 없는 표기가 화면에 나간다.
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/place_photo_api_service.dart';
+import 'package:map_project_client/core/api/place_photo_api_service.dart';
 
 void main() {
   _flagContentUriTests();

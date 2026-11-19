@@ -4,13 +4,13 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/constants/korea_regions.dart';
-import 'package:map_service_client/common/constants/random_missions.dart';
-import 'package:map_service_client/common/widgets/next_button.dart';
-import 'package:map_service_client/common/widgets/prev_button.dart';
-import 'package:map_service_client/core/api/places_api_service.dart';
-import 'package:map_service_client/features/trip/screens/plan_map_screen.dart';
-import 'package:map_service_client/features/trip/screens/random_trip_screen.dart';
+import 'package:map_project_client/common/constants/korea_regions.dart';
+import 'package:map_project_client/common/constants/random_missions.dart';
+import 'package:map_project_client/common/widgets/next_button.dart';
+import 'package:map_project_client/common/widgets/prev_button.dart';
+import 'package:map_project_client/core/api/places_api_service.dart';
+import 'package:map_project_client/features/trip/screens/plan_map_screen.dart';
+import 'package:map_project_client/features/trip/screens/random_trip_screen.dart';
 
 /// 정해 둔 순서대로 값을 내는 난수.
 class _Scripted implements math.Random {

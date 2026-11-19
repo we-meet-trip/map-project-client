@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/chat_api_service.dart';
-import 'package:map_service_client/core/api/invite_api_service.dart';
+import 'package:map_project_client/core/api/chat_api_service.dart';
+import 'package:map_project_client/core/api/invite_api_service.dart';
 
 /// 서버에 전역 이름 규칙이 없어 필드마다 표기를 따로 붙이는 구조다. 하나를
 /// 잘못 읽어도 컴파일은 통과하고 화면에서만 값이 비어 보이므로, 키를 직접 건다.

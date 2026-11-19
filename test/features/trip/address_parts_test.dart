@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/trip/screens/trip_directions_screen.dart';
+import 'package:map_project_client/features/trip/screens/trip_directions_screen.dart';
 
 void main() {
   test('서울은 시도명이 두 번 찍히지 않는다', () {

@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
-import 'package:map_service_client/core/state/trip_repository.dart';
-import 'package:map_service_client/features/place_explore/utils/explore_route_request.dart';
-import 'package:map_service_client/features/place_explore/utils/plan_place_id.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/core/state/trip_repository.dart';
+import 'package:map_project_client/features/place_explore/utils/explore_route_request.dart';
+import 'package:map_project_client/features/place_explore/utils/plan_place_id.dart';
 
 /// 탐색에서 고른 장소를 동선 요청으로 접는 규칙 검증.
 ///

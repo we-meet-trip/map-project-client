@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/chat_api_service.dart';
-import 'package:map_service_client/data/models/chat_message.dart';
-import 'package:map_service_client/data/models/chat_room.dart';
-import 'package:map_service_client/data/repositories/api_chat_repository.dart';
+import 'package:map_project_client/core/api/chat_api_service.dart';
+import 'package:map_project_client/data/models/chat_message.dart';
+import 'package:map_project_client/data/models/chat_room.dart';
+import 'package:map_project_client/data/repositories/api_chat_repository.dart';
 
 class _FakeChatApi implements ChatApiService {
   _FakeChatApi({

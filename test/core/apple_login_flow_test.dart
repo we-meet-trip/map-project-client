@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/apple_login_flow.dart';
-import 'package:map_service_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/apple_login_flow.dart';
+import 'package:map_project_client/core/api/api_client.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 void main() {

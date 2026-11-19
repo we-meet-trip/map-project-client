@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
-import 'package:map_service_client/features/trip/utils/manual_route_request.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/features/trip/utils/manual_route_request.dart';
 
 /// 직접 고친 일정을 동선 요청으로 접는 규칙 검증.
 ///

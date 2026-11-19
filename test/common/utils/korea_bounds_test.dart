@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/utils/korea_bounds.dart';
+import 'package:map_project_client/common/utils/korea_bounds.dart';
 
 /// 서비스 범위 밖 좌표를 대표 지점으로 갈음한다.
 ///

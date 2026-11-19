@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/config/app_config.dart';
+import 'package:map_project_client/core/config/app_config.dart';
 
 /// 서버 주소를 어디까지 받아 줄지 고정한다.
 ///

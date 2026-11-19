@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/widgets/app_empty_state.dart';
+import 'package:map_project_client/common/widgets/app_empty_state.dart';
 
 void main() {
   Future<void> pump(WidgetTester tester, Widget child) =>

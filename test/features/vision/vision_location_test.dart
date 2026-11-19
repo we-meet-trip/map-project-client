@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/vision/models/vision_models.dart';
+import 'package:map_project_client/features/vision/models/vision_models.dart';
 
 /// 장소 인식에 싣는 좌표가 서비스 범위를 벗어나면 실지 않는다.
 ///

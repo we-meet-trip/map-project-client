@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/chat_api_service.dart';
-import 'package:map_service_client/core/api/invite_api_service.dart';
-import 'package:map_service_client/data/repositories/api_invite_repository.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/chat_api_service.dart';
+import 'package:map_project_client/core/api/invite_api_service.dart';
+import 'package:map_project_client/data/repositories/api_invite_repository.dart';
 
 /// 미리보기와 참가 두 호출을 흉내 낸다. 실제 통신은 이 파일의 관심이 아니다.
 class _FakeInviteApi implements InviteApiService {

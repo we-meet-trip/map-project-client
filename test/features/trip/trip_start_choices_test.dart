@@ -1,7 +1,7 @@
 // 여행 계획 첫 화면이 세 갈래(직접 계획·AI 추천·랜덤)를 모두 열 수 있는지 본다.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/trip/screens/trip_start_screen.dart';
+import 'package:map_project_client/features/trip/screens/trip_start_screen.dart';
 
 void main() {
   testWidgets('세 갈래 단추가 각자의 흐름을 연다', (tester) async {

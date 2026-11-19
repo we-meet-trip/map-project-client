@@ -4,12 +4,12 @@
 // 시험 환경에서는 지도가 뜨지 않으므로 같은 결과를 보여 주는 목록으로 고른다.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/widgets/next_button.dart';
-import 'package:map_service_client/common/widgets/review_summary_section.dart';
-import 'package:map_service_client/core/api/places_api_service.dart';
-import 'package:map_service_client/features/place_explore/widgets/place_bottom_sheet.dart';
-import 'package:map_service_client/features/trip/screens/plan_map_screen.dart';
-import 'package:map_service_client/features/trip/widgets/place_detail_sheet.dart';
+import 'package:map_project_client/common/widgets/next_button.dart';
+import 'package:map_project_client/common/widgets/review_summary_section.dart';
+import 'package:map_project_client/core/api/places_api_service.dart';
+import 'package:map_project_client/features/place_explore/widgets/place_bottom_sheet.dart';
+import 'package:map_project_client/features/trip/screens/plan_map_screen.dart';
+import 'package:map_project_client/features/trip/widgets/place_detail_sheet.dart';
 
 PlaceSearchItem _item(String name, String address) => PlaceSearchItem(
       contentId: 'kakao:$name',

@@ -11,8 +11,8 @@
 // 끝난다. 그 상태에서도 시트가 예외 없이 그려져야 한다.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/place_explore/widgets/place_bottom_sheet.dart';
-import 'package:map_service_client/features/trip/widgets/place_detail_sheet.dart';
+import 'package:map_project_client/features/place_explore/widgets/place_bottom_sheet.dart';
+import 'package:map_project_client/features/trip/widgets/place_detail_sheet.dart';
 
 const _name = '경복궁';
 const _address = '서울 종로구 사직로 161';

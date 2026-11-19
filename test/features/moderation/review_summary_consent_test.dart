@@ -5,14 +5,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/common/widgets/external_ai_consent.dart';
-import 'package:map_service_client/common/widgets/review_summary_section.dart';
-import 'package:map_service_client/core/api/review_api_service.dart';
-import 'package:map_service_client/core/api/moderation_api_service.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/state/auth_store.dart';
-import 'package:map_service_client/core/state/service_consent_store.dart';
-import 'package:map_service_client/features/mypage/screens/external_ai_settings_screen.dart';
+import 'package:map_project_client/common/widgets/external_ai_consent.dart';
+import 'package:map_project_client/common/widgets/review_summary_section.dart';
+import 'package:map_project_client/core/api/review_api_service.dart';
+import 'package:map_project_client/core/api/moderation_api_service.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
+import 'package:map_project_client/core/state/service_consent_store.dart';
+import 'package:map_project_client/features/mypage/screens/external_ai_settings_screen.dart';
 import '../../support/policy_versions.dart';
 
 http.Response jsonResponse(String body, int status) => http.Response(

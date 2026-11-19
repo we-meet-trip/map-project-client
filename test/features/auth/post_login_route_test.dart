@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/data/repositories/invite_repository.dart';
-import 'package:map_service_client/features/auth/post_login_route.dart';
-import 'package:map_service_client/features/invite/providers/invite_provider.dart';
+import 'package:map_project_client/data/repositories/invite_repository.dart';
+import 'package:map_project_client/features/auth/post_login_route.dart';
+import 'package:map_project_client/features/invite/providers/invite_provider.dart';
 import 'package:provider/provider.dart';
 
 class _UnusedInviteRepository implements InviteRepository {

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/places_api_service.dart';
+import 'package:map_project_client/core/api/places_api_service.dart';
 
 /// 장소 검색 결과 해석 검증.
 ///

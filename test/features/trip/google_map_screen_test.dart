@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as google;
-import 'package:map_service_client/core/api/trip_api_service.dart';
-import 'package:map_service_client/core/maps/map_adapter.dart';
-import 'package:map_service_client/core/maps/map_bootstrap.dart';
-import 'package:map_service_client/features/trip/screens/google_map_screen.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/core/maps/map_adapter.dart';
+import 'package:map_project_client/core/maps/map_bootstrap.dart';
+import 'package:map_project_client/features/trip/screens/google_map_screen.dart';
 
 TripTransportToNext route({
   String source = 'OSRM',

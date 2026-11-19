@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/moderation_api_service.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
-import 'package:map_service_client/features/trip/screens/trip_created_screen.dart';
-import 'package:map_service_client/features/moderation/report_dialog.dart';
-import 'package:map_service_client/features/moderation/moderation_center_screen.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/moderation_api_service.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/features/trip/screens/trip_created_screen.dart';
+import 'package:map_project_client/features/moderation/report_dialog.dart';
+import 'package:map_project_client/features/moderation/moderation_center_screen.dart';
 
 const id = '215bc33e-2ed3-4e21-b0e1-4a6dbfd4a110';
 Map<String, dynamic> receipt() => {

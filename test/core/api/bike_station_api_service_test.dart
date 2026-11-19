@@ -10,7 +10,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/api/bike_station_api_service.dart';
+import 'package:map_project_client/core/api/bike_station_api_service.dart';
 
 /// 본문을 utf-8 로 실어 보낸다. 조회 쪽이 본문 바이트를 utf-8 로 읽기 때문에
 /// 문자표를 밝히지 않으면 대여소 이름이 깨진 채로 비교하게 된다.

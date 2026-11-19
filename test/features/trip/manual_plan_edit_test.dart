@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/trip_api_service.dart';
-import 'package:map_service_client/core/state/trip_repository.dart';
-import 'package:map_service_client/core/state/auth_store.dart';
-import 'package:map_service_client/core/state/service_consent_store.dart';
-import 'package:map_service_client/common/widgets/external_ai_consent.dart';
-import 'package:map_service_client/common/widgets/next_button.dart';
-import 'package:map_service_client/features/trip/screens/manual_plan_screen.dart';
-import 'package:map_service_client/features/trip/screens/saved_plan_edit_screen.dart';
-import 'package:map_service_client/features/trip/utils/plan_edit_draft.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/trip_api_service.dart';
+import 'package:map_project_client/core/state/trip_repository.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
+import 'package:map_project_client/core/state/service_consent_store.dart';
+import 'package:map_project_client/common/widgets/external_ai_consent.dart';
+import 'package:map_project_client/common/widgets/next_button.dart';
+import 'package:map_project_client/features/trip/screens/manual_plan_screen.dart';
+import 'package:map_project_client/features/trip/screens/saved_plan_edit_screen.dart';
+import 'package:map_project_client/features/trip/utils/plan_edit_draft.dart';
 import '../../support/policy_versions.dart';
 
 TripStop stop(String name, {int day = 1}) => TripStop(

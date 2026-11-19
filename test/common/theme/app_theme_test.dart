@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/app.dart';
-import 'package:map_service_client/common/theme/app_colors.dart';
+import 'package:map_project_client/app.dart';
+import 'package:map_project_client/common/theme/app_colors.dart';
 
 /// 스타일을 따로 주지 않은 Material 기본 위젯이 브랜드 색으로 그려지는지 본다.
 ///

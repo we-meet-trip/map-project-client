@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/data/local/permission_notice_store.dart';
+import 'package:map_project_client/data/local/permission_notice_store.dart';
 
 /// 기기 저장소가 없어도 첫 화면을 지나갈 수 있어야 한다.
 ///

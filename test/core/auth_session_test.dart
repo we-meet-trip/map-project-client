@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/auth_api_service.dart';
-import 'package:map_service_client/core/state/auth_store.dart';
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/auth_api_service.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

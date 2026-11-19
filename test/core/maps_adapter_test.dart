@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as g;
-import 'package:map_service_client/core/maps/map_adapter.dart';
-import 'package:map_service_client/core/maps/map_bootstrap.dart';
+import 'package:map_project_client/core/maps/map_adapter.dart';
+import 'package:map_project_client/core/maps/map_bootstrap.dart';
 
 void main() {
   test('origin and destination markers keep their distinct SDK colors', () {

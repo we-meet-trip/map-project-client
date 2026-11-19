@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/trip/models/trip_forecast.dart';
-import 'package:map_service_client/features/trip/widgets/trip_weather_card.dart';
+import 'package:map_project_client/features/trip/models/trip_forecast.dart';
+import 'package:map_project_client/features/trip/widgets/trip_weather_card.dart';
 
 void main() {
   final fixedNow = DateTime.parse('2026-09-07T00:00:00Z');

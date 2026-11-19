@@ -4,8 +4,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/place_explore/models/place_detail.dart';
-import 'package:map_service_client/features/place_explore/widgets/place_bottom_sheet.dart';
+import 'package:map_project_client/features/place_explore/models/place_detail.dart';
+import 'package:map_project_client/features/place_explore/widgets/place_bottom_sheet.dart';
 
 /// 장소 팝업이 서버가 준 요약·후기를 그대로 그리는지 검증.
 ///

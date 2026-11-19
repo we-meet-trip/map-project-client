@@ -5,9 +5,9 @@
 // 상수를 보는지 여기서 붙잡는다.
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/features/auth/widgets/auth_button_metrics.dart';
-import 'package:map_service_client/features/auth/widgets/email_login_button.dart';
-import 'package:map_service_client/features/auth/widgets/kakao_login_button.dart';
+import 'package:map_project_client/features/auth/widgets/auth_button_metrics.dart';
+import 'package:map_project_client/features/auth/widgets/email_login_button.dart';
+import 'package:map_project_client/features/auth/widgets/kakao_login_button.dart';
 
 void main() {
   Future<void> mount(WidgetTester tester, Widget child) async {

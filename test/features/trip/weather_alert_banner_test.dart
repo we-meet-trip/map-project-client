@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/data/models/weather_alert.dart';
-import 'package:map_service_client/features/trip/widgets/weather_alert_banner.dart';
+import 'package:map_project_client/data/models/weather_alert.dart';
+import 'package:map_project_client/features/trip/widgets/weather_alert_banner.dart';
 
 /// 날씨 배너 — 서버가 보낸 알림이 화면에서 어떤 선택지가 되는지
 ///

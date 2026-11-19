@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/chat_realtime_service.dart';
+import 'package:map_project_client/core/api/chat_realtime_service.dart';
 
 /// 개인 오류 큐로 오는 ERROR 프레임 해석 검증.
 ///

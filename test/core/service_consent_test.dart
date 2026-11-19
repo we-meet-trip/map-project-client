@@ -6,18 +6,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:map_service_client/core/api/api_client.dart';
-import 'package:map_service_client/core/api/service_consent_api_service.dart';
-import 'package:map_service_client/core/router/app_router.dart'
+import 'package:map_project_client/core/api/api_client.dart';
+import 'package:map_project_client/core/api/service_consent_api_service.dart';
+import 'package:map_project_client/core/router/app_router.dart'
     show authRedirect;
-import 'package:map_service_client/core/state/auth_store.dart';
-import 'package:map_service_client/core/state/service_consent_store.dart';
-import 'package:map_service_client/features/auth/screens/service_consent_screen.dart';
-import 'package:map_service_client/features/auth/screens/policy_account_screen.dart';
-import 'package:map_service_client/core/state/user_repository.dart' as profile;
-import 'package:map_service_client/features/vision/services/vision_ws_service.dart';
-import 'package:map_service_client/features/vision/models/vision_models.dart';
-import 'package:map_service_client/core/api/chat_realtime_service.dart';
+import 'package:map_project_client/core/state/auth_store.dart';
+import 'package:map_project_client/core/state/service_consent_store.dart';
+import 'package:map_project_client/features/auth/screens/service_consent_screen.dart';
+import 'package:map_project_client/features/auth/screens/policy_account_screen.dart';
+import 'package:map_project_client/core/state/user_repository.dart' as profile;
+import 'package:map_project_client/features/vision/services/vision_ws_service.dart';
+import 'package:map_project_client/features/vision/models/vision_models.dart';
+import 'package:map_project_client/core/api/chat_realtime_service.dart';
 import '../support/policy_versions.dart';
 
 Map<String, dynamic> receipt({

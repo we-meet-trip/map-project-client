@@ -3,9 +3,9 @@
 // 그리는 쪽과 보행 경로를 조회하는 쪽이 이 한 함수를 같이 쓴다. 여기서 순서나
 // 끝점이 틀리면 받아 온 보행 경로가 엉뚱한 연결선에 그려진다.
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/core/api/transit_route_options_service.dart';
-import 'package:map_service_client/core/maps/map_types.dart';
-import 'package:map_service_client/features/trip/screens/transit_route_map_screen.dart';
+import 'package:map_project_client/core/api/transit_route_options_service.dart';
+import 'package:map_project_client/core/maps/map_types.dart';
+import 'package:map_project_client/features/trip/screens/transit_route_map_screen.dart';
 
 TransitRouteLeg _leg(TransitLegType type, List<List<double>> geometry) =>
     TransitRouteLeg(

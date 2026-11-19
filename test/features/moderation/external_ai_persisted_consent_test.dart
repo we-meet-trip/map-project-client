@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:map_service_client/common/widgets/external_ai_consent.dart';
-import 'package:map_service_client/core/api/ai_consent_api_service.dart';
-import 'package:map_service_client/core/api/api_client.dart';
+import 'package:map_project_client/common/widgets/external_ai_consent.dart';
+import 'package:map_project_client/core/api/ai_consent_api_service.dart';
+import 'package:map_project_client/core/api/api_client.dart';
 
 /// 서버가 저장된 동의를 확인하고 요청을 받아 주는지 흉내 낸다.
 ///
