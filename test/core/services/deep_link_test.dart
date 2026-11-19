@@ -15,7 +15,7 @@ void main() {
 
   test('앱 전용 주소도 같은 화면으로 간다', () {
     expect(
-      DeepLinkService.routeOf(Uri.parse('mapservice://invite/TOK')),
+      DeepLinkService.routeOf(Uri.parse('mapproject-dev://invite/TOK')),
       '/invite/TOK',
     );
   });
@@ -33,23 +33,27 @@ void main() {
       DeepLinkService.routeOf(Uri.parse('https://example.invalid/other/TOK')),
       isNull,
     );
-    expect(DeepLinkService.routeOf(Uri.parse('mapauth://kakao')), isNull);
-    expect(DeepLinkService.routeOf(Uri.parse('mapservice://invite')), isNull);
+    expect(DeepLinkService.routeOf(Uri.parse('mapauth-test://kakao')), isNull);
+    expect(
+      DeepLinkService.routeOf(Uri.parse('mapproject-dev://invite')),
+      isNull,
+    );
   });
   test('다른 환경·평문·경로 삽입 링크는 받지 않는다', () {
     for (final link in [
       'https://example.invalid/invite/TOK',
+      'mapservice://invite/TOK',
       'http://web.example.test/invite/TOK',
       'https://web.example.test:8443/invite/TOK',
       'https://user@web.example.test/invite/TOK',
       'https://web.example.test/invite/TOK/extra',
       'https://web.example.test/invite/TOK?redirect=x',
       'https://web.example.test/invite/TOK#fragment',
-      'mapservice://invite/TOK/extra',
-      'mapservice://invite:443/TOK',
-      'mapservice://invite/a%2Fb',
-      'mapservice://invite/a%3Fb',
-      'mapservice://invite/TOK?environment=prod',
+      'mapproject-dev://invite/TOK/extra',
+      'mapproject-dev://invite:443/TOK',
+      'mapproject-dev://invite/a%2Fb',
+      'mapproject-dev://invite/a%3Fb',
+      'mapproject-dev://invite/TOK?environment=prod',
     ]) {
       expect(DeepLinkService.routeOf(Uri.parse(link)), isNull, reason: link);
     }
