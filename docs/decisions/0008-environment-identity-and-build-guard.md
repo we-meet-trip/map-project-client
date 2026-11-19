@@ -16,4 +16,4 @@
 - 다른 환경으로 iOS 를 빌드할 때는 `--print-xcconfig` 로 `NativeEnvironment.xcconfig` 를 만든다.
 - 초대 origin 을 주지 않은 빌드의 앱 링크 도메인 자리는 예약 도메인 `invite.example.invalid` 로 채운다. 도메인 검증이 일어나지 않고 앱 전용 스킴만 쓰인다.
 - 스토어에 올리는 사람은 자기 번들 ID 를 쓰게 된다. 이 이름들은 소유한 도메인을 뜻하지 않는다.
-- 관련 커밋: {{commit:6d4723c}}
+- 관련 커밋: [`0610b14`](https://github.com/we-meet-trip/map-project-client/commit/0610b147cdd87202453a7ed09872d030eacd24b4)

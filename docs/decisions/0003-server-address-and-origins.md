@@ -15,4 +15,4 @@
 - 원격 설정 문서는 선택이다. 주지 않으면 원격 조회 없이 로컬 서버를 본다.
 - 원격 조회는 첫 화면 전에 일어나므로 3초로 끊고, 실패하면 뒤에서 간격을 늘려 다시 묻는다.
 - 판정은 `lib/core/config/endpoint_policy.dart` 한 곳에 있고 시험이 고정한다.
-- 관련 커밋: {{commit:62a44c1}}, {{commit:9bf83b8}}
+- 관련 커밋: [`d13cf1b`](https://github.com/we-meet-trip/map-project-client/commit/d13cf1b72af5551ea2e0b78dde53a58179e38112), [`53b6d1c`](https://github.com/we-meet-trip/map-project-client/commit/53b6d1cd431e0813712ac5f9321eb2261a01667c)

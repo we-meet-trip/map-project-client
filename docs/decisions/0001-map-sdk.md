@@ -15,4 +15,4 @@ Google Maps 를 쓴다. 앞의 두 SDK 로 만든 코드는 지웠다.
 - 플랫폼마다 클라이언트 키를 빌드값(`CLIENT_GOOGLE_MAPS_ANDROID_API_KEY`·`_IOS_`·`_WEB_`)으로 넣는다. 키가 없으면 지도 없이 나머지 화면이 돈다.
 - 웹은 조건부 import 로 웹 전용 로더를 쓴다(`lib/core/maps/map_loader_web.dart`). 네이버 지도 시절에 웹 지원 때문에 겪은 일은 [트러블슈팅](../troubleshooting.md)의 T-MAP-01 에 있다.
 - 장소 데이터와 지도가 같은 제공자라, 이용조건을 한 곳만 보면 된다(해석).
-- 관련 커밋: {{commit:fcab504}}, {{commit:64e111f}}
+- 관련 커밋: [`49333de`](https://github.com/we-meet-trip/map-project-client/commit/49333de795af84cdb24e5832a05191a210e1281c), [`0cb26b9`](https://github.com/we-meet-trip/map-project-client/commit/0cb26b9a530a198a0c953d0ec4d54d9cad062e98)

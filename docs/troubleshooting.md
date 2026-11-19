@@ -8,7 +8,7 @@
 - **해결**: 로딩 화면이 기다리는 작업의 실패를 잡아 실패해도 화면을 끝내게 했다. 비동기 작업 뒤에는 화면이 살아 있는지 확인하고 닫는 순서를 고정했다.
 - **검증**: 검증 기록이 남아 있지 않다.
 - **교훈**: 기다리는 화면은 성공만이 아니라 실패와 화면 이탈까지 끝나는 길이 있어야 한다.
-- **관련 커밋**: {{commit:b43308a}}, {{commit:e215661}}
+- **관련 커밋**: [`992e770`](https://github.com/we-meet-trip/map-project-client/commit/992e7707a754d34f661402a5b6aa9ffa12df9387), [`12fc2be`](https://github.com/we-meet-trip/map-project-client/commit/12fc2be33a1decf1bad418a571d3a5ffc95afe49)
 
 ## T-MAP-01 웹 빌드에서 지도 자리가 회색 상자로만 보임
 - **증상**: 웹으로 빌드한 앱에서 지도 자리에 회색 상자만 떴다. 모바일은 정상이었다.
@@ -16,7 +16,7 @@
 - **해결**: 웹 전용 지도 어댑터를 만들고, 조건부 import 로 플랫폼마다 다른 구현을 고르게 했다. 지금 쓰는 Google Maps 어댑터도 같은 구조다(`lib/core/maps/map_loader_web.dart`).
 - **검증**: 웹 빌드 화면에서 실제 타일과 마커가 그려지는 것을 확인했다.
 - **교훈**: 플러그인이 "지원한다"는 플랫폼 목록을 먼저 확인한다. 조용히 빈 화면을 내는 대체 구현은 오류보다 찾기 어렵다.
-- **관련 커밋**: {{commit:c754639}}
+- **관련 커밋**: [`8e9e0ed`](https://github.com/we-meet-trip/map-project-client/commit/8e9e0edb5ca944bbcdcf898f009aae3bf2f8ccfe)
 
 ## T-MAP-02 지도를 다시 만들 때 iOS 앱이 죽음
 - **증상**: 지도 인증을 다시 시도하려고 지도를 새로 만들면, iOS 에서는 앱이 종료되고 Android 에서는 마커 아이콘만 빠졌다.
@@ -24,7 +24,7 @@
 - **해결**: 지도에 세대 값을 두고 그리기마다 번호를 매겨, 앞선 그리기는 다음 대기 지점에서 물러나게 했다. 지도를 쓰는 화면 모두에 같은 규칙을 적용했다.
 - **검증**: 검증 기록이 남아 있지 않다.
 - **교훈**: 다시 만들 수 있는 위젯의 비동기 작업은 "지금 화면의 것인가"를 스스로 확인해야 한다.
-- **관련 커밋**: {{commit:b439d21}}
+- **관련 커밋**: [`bb26a27`](https://github.com/we-meet-trip/map-project-client/commit/bb26a27c397b2c5d6c0df8cae7c4ad96285949d4)
 
 ## T-BUILD-01 iOS 빌드가 첫 음성 입력에서 죽고 외부 복귀가 앱을 열지 못함
 - **증상**: iOS 앱이 음성 입력을 처음 쓰는 순간 종료됐다. 외부 로그인과 초대 링크가 앱으로 돌아오지 못했다.
@@ -32,7 +32,7 @@
 - **해결**: 번들 ID 를 Android 패키지와 맞추고, 권한 문구와 URL 스킴을 `Info.plist` 에 등록하고, Podfile 과 최소 iOS 판을 정했다.
 - **검증**: 검증 기록이 남아 있지 않다. 지금은 `scripts/tests/test_mobile_environment.py` 가 `Info.plist` 의 스킴 등록을 확인한다.
 - **교훈**: iOS 는 권한 문구가 없으면 경고가 아니라 즉시 종료다. 새 기기 기능을 붙일 때는 권한 문구부터 넣는다.
-- **관련 커밋**: {{commit:1601688}}
+- **관련 커밋**: [`44b12db`](https://github.com/we-meet-trip/map-project-client/commit/44b12db8dfd61e362a896e94f2ca4506cb8a3f18)
 
 ## T-BUILD-02 Android 빌드 스크립트에서 `URI` 가 엉뚱한 타입으로 해석됨
 - **증상**: Gradle Kotlin 스크립트에 초대 origin 검사를 넣은 뒤 Android 빌드가 컴파일 단계에서 실패했다.
@@ -40,7 +40,7 @@
 - **해결**: `java.net.URI` 를 명시적으로 import 했다(`android/app/build.gradle.kts`).
 - **검증**: 같은 빌드가 성공하는 것을 확인했다.
 - **교훈**: 빌드 스크립트의 DSL 블록은 이름을 가린다. 표준 라이브러리 타입은 완전한 이름이나 명시 import 로 쓴다.
-- **관련 커밋**: {{commit:bd81955}}
+- **관련 커밋**: [`eef6884`](https://github.com/we-meet-trip/map-project-client/commit/eef688418b03753da4f27e5c471d3b8b5322dde9)
 
 ## T-BUILD-03 iOS 앱 아이콘이 Flutter 기본 로고로 빌드됨
 - **증상**: Android·웹 아이콘은 앱 로고인데 iOS 아이콘만 Flutter 기본 로고였다.
@@ -48,7 +48,7 @@
 - **해결**: 같은 원본 이미지(`assets/icon/app_icon.png`)에서 iOS 아이콘 세트를 다시 만들었다. 도구가 덤으로 바꾼 프로젝트 설정은 되돌렸다.
 - **검증**: 만든 아이콘 이미지를 직접 열어 보고, 크기 목록과 투명도가 없는지를 확인했다.
 - **교훈**: 이미지 자산은 파일이 있는지가 아니라 실제로 열어 내용을 본다.
-- **관련 커밋**: {{commit:7a36194}}
+- **관련 커밋**: [`cb6a466`](https://github.com/we-meet-trip/map-project-client/commit/cb6a466c88fe2134aeb91051fa11e80571f4ceeb)
 
 ## T-LINK-01 초대 링크를 눌러도 앱 대신 브라우저가 열림
 - **증상**: 대화방 초대 링크를 누르면 앱이 아니라 브라우저가 열렸다. iOS 에서는 앱 전용 주소도 무시됐다.
@@ -61,7 +61,7 @@
   - 지금은 Android·iOS·빌드 가드가 같은 값을 쓰는지를 매 iOS 빌드에서 대조한다.
 - **검증**: `test/core/services/deep_link_test.dart` 가 받는 링크와 거절하는 링크를 고정한다.
 - **교훈**: 앱 링크는 도메인·패키지·서명 지문 중 하나만 어긋나도 오류 없이 브라우저로 간다. 한 곳에서 정한 값을 모든 설정이 따라 쓰게 하고, 기계가 대조하게 한다.
-- **관련 커밋**: {{commit:6d4723c}}, {{commit:9bf83b8}}
+- **관련 커밋**: [`0610b14`](https://github.com/we-meet-trip/map-project-client/commit/0610b147cdd87202453a7ed09872d030eacd24b4), [`53b6d1c`](https://github.com/we-meet-trip/map-project-client/commit/53b6d1cd431e0813712ac5f9321eb2261a01667c)
 
 ## T-DATA-01 이동수단 없이 저장된 옛 일정의 상세가 열리지 않음
 - **증상**: 이동수단을 함께 저장하기 전에 만든 일정을 열면 상세 화면 전체가 예외로 죽었다.
@@ -69,7 +69,7 @@
 - **해결**: 서버는 값 없는 필드를 내보내지 않게 했다. 앱은 값이 빠져도 이동 카드를 만들고, 이동수단은 라벨로만 판별하게 했다.
 - **검증**: 검증 기록이 남아 있지 않다.
 - **교훈**: 저장된 옛 데이터는 새 스키마보다 오래 산다. 응답 필드는 없거나 `null` 일 수 있다고 보고 읽는다.
-- **관련 커밋**: {{commit:cee1780}}
+- **관련 커밋**: [`c02d9bb`](https://github.com/we-meet-trip/map-project-client/commit/c02d9bbdd43692b6f35a3e2ed5ef98cb6bc47094)
 
 ## T-SEC-01 배포본이 평문 통신을 허용함
 - **증상**: 로컬 서버 접속용으로 연 평문(http) 허용이 배포본에도 남아 있었다. 원격 설정에서 받은 서버 주소가 http 여도 받아들였다.
@@ -77,7 +77,7 @@
 - **해결**: main 매니페스트에서 평문 허용을 지웠다. 원격·캐시에서 온 주소는 https 이고 허용 origin 목록에 있을 때만 쓰게 했다. 개발 중 직접 넣는 주소만 http 를 받는다.
 - **검증**: `test/core/endpoint_policy_test.dart` 가 허용 origin 판정을 고정한다.
 - **교훈**: 로그인 토큰은 서버 주소를 따라간다. 주소를 바꿀 수 있는 모든 경로(빌드값·원격 문서·캐시)를 같은 규칙으로 검사한다.
-- **관련 커밋**: {{commit:8e5b115}}, {{commit:f576272}}, {{commit:9bf83b8}}
+- **관련 커밋**: [`8b09a24`](https://github.com/we-meet-trip/map-project-client/commit/8b09a24839a7f7bb4faaba24f507b7fe4c9c6558), [`8288c3b`](https://github.com/we-meet-trip/map-project-client/commit/8288c3baf42e194e6de45a45ae5945f27db400ea), [`53b6d1c`](https://github.com/we-meet-trip/map-project-client/commit/53b6d1cd431e0813712ac5f9321eb2261a01667c)
 
 ## T-SEC-02 앱 꾸러미에 외부 API 키가 실려 있었음
 - **증상**: 설치본을 풀면 공공·외부 API 키를 꺼낼 수 있었다. 대상은 대중교통 경로, 공유 자전거, 공공데이터, 지도 클라이언트 ID 였다. 일부는 소스 코드에 글자 그대로 들어 있었고, 쓰이지 않는 웹 페이지 하나도 키를 원문으로 담고 있었다.
@@ -89,7 +89,7 @@
   - 공개 저장소의 히스토리에서도 키 값을 지웠다.
 - **검증**: 공개 전에 히스토리 전체를 비밀값 검사(gitleaks)와 금지어 검사로 확인했고, 남은 것이 없었다.
 - **교훈**: 앱 꾸러미에 든 값은 공개된 값이다. 기기·패키지에 묶어 제한할 수 있는 클라이언트 키만 앱에 두고, 나머지는 서버가 부른다([decisions/0002](decisions/0002-external-apis-via-server.md)). 코드에서 지운 키도 히스토리에 남으므로, 발급처에서 폐기·재발급해야 끝난다.
-- **관련 커밋**: {{commit:48455b0}}, {{commit:a07a287}}, {{commit:ee0e618}}, {{commit:b6466b9}}
+- **관련 커밋**: [`83aaa95`](https://github.com/we-meet-trip/map-project-client/commit/83aaa95cd1d69c1b1138e99b05af5429d3a6ff84), [`2fa84c6`](https://github.com/we-meet-trip/map-project-client/commit/2fa84c6441cb92440244acbde516611c614b92c6), [`4bead0f`](https://github.com/we-meet-trip/map-project-client/commit/4bead0f4183633d346a837faec90bd1ebbcc0e7b), [`376bbda`](https://github.com/we-meet-trip/map-project-client/commit/376bbda97e7680d5c034216c985594c21810cc74)
 
 ## T-CONSENT-01 외부 AI 동의를 했는데도 AI 기능이 모두 거절됨
 - **증상**: 동의 화면에서 외부 AI 전송에 동의했는데도 추천·재탐색·Vision·리뷰 요약 요청이 모두 403 으로 거절됐다.
@@ -97,7 +97,7 @@
 - **해결**: 동의 화면이 서버에 동의를 남기고 철회는 지우게 했다. 판과 개정 번호는 서버가 준 값을 그대로 돌려보낸다. 서버 기록에 실패하면 동의로 치지 않고, 철회는 서버 호출이 실패해도 앱 안의 차단을 되돌리지 않는다.
 - **검증**: `test/features/moderation/external_ai_persisted_consent_test.dart` 가 동의·철회의 서버 기록을 확인한다.
 - **교훈**: 권한 판단은 한 곳(서버)에 두고, 앱은 그 기록을 만들고 따르는 쪽이 된다. 막는 방향으로 틀리는 것이 안전하다.
-- **관련 커밋**: {{commit:6aa7096}}, {{commit:f4c18af}}
+- **관련 커밋**: [`478a158`](https://github.com/we-meet-trip/map-project-client/commit/478a1581034623a25f5898f8e0a72b8d3f239e31), [`656353e`](https://github.com/we-meet-trip/map-project-client/commit/656353e6547811c792320ad0f10cf6c9c5508449)
 
 ## T-CONSENT-02 서버가 정책 판을 올리면 설치된 앱이 모두 잠길 수 있었음
 - **증상**: 서버가 약관 판을 올리면, 이미 동의한 사용자도 앱의 모든 요청이 막히고 재동의 화면에도 갈 수 없는 구조였다.
@@ -105,4 +105,4 @@
 - **해결**: 앱은 판의 형식만 확인하고 서버가 준 판으로 재동의를 받게 했다. 판이 바뀌면 동의 화면이 새 판을 보인다.
 - **검증**: `test/core/service_consent_test.dart` 가 판이 바뀌는 경우(1.0.0 → 1.0.1)를 시험한다.
 - **교훈**: 서버가 바꾸는 값을 앱에 상수로 굽지 않는다. 앱을 다시 내지 않아도 서버 변경을 따라갈 수 있어야 한다.
-- **관련 커밋**: {{commit:103fdbc}}
+- **관련 커밋**: [`0013b53`](https://github.com/we-meet-trip/map-project-client/commit/0013b53538a0d6f280fd935d18416273e0016af2)

@@ -14,4 +14,4 @@
 - 복귀 감시 타이머·요청 짝짓기 난수·제한 시간 같은 브라우저 복귀 장치를 모두 걷어 냈다.
 - 카카오톡 설치 확인을 위해 iOS 앱 실행 허용 목록에 카카오 스킴을 밝혀 둔다(`Info.plist`).
 - 네이티브 앱 키가 빌드값으로 필요하다(`CLIENT_KAKAO_NATIVE_APP_KEY`). Android 운영 빌드는 키가 없으면 빌드를 멈춘다.
-- 관련 커밋: {{commit:1423f03}}
+- 관련 커밋: [`12b4f7b`](https://github.com/we-meet-trip/map-project-client/commit/12b4f7b0b92dc24e65ae508a55fabb1ca1fbb27e)

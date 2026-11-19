@@ -14,4 +14,4 @@
 - 판이 바뀌어도 앱을 다시 낼 필요가 없다. 앱은 판의 형식만 확인한다(`^[A-Za-z0-9][A-Za-z0-9._-]{0,31}$`).
 - 서버가 판을 올리면 기존 사용자는 새 판에 다시 동의할 때까지 서비스 요청이 막힌다. 동의 화면은 열린다.
 - 겪은 문제는 [트러블슈팅](../troubleshooting.md)의 T-CONSENT-01·02 에 있다.
-- 관련 커밋: {{commit:f4c18af}}, {{commit:103fdbc}}
+- 관련 커밋: [`656353e`](https://github.com/we-meet-trip/map-project-client/commit/656353e6547811c792320ad0f10cf6c9c5508449), [`0013b53`](https://github.com/we-meet-trip/map-project-client/commit/0013b53538a0d6f280fd935d18416273e0016af2)
