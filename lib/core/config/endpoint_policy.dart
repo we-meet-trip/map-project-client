@@ -1,45 +1,44 @@
 /// The API origin is also the token storage boundary. Paths and userinfo cannot
 /// select a different API below an otherwise allowed host.
+///
+/// 기본값에는 어떤 서버 주소도 없다. 배포하는 사람이 빌드값으로 허용 origin 과
+/// (쓴다면) 원격 설정 주소를 넣는다. 운영 빌드는 허용 origin 을 반드시 직접 줘야 한다.
 class EndpointPolicy {
   const EndpointPolicy({
     required this.environment,
     required this.allowedOrigins,
     required this.configUrl,
     required this.explicitOrigins,
-    required this.explicitConfigUrl,
   });
 
   final String environment;
   final String allowedOrigins;
+
+  /// 원격 설정 문서 주소. 비어 있으면 원격 조회를 하지 않는다.
   final String configUrl;
   final bool explicitOrigins;
-  final bool explicitConfigUrl;
 
-  static const testHosts = {
-    'api.example.test',
-    'api-alt.example.test',
-    'web.example.test',
-    'web.example.test',
-  };
+  List<String> get _origins => allowedOrigins
+      .split(',')
+      .map((s) => s.trim())
+      .where((s) => s.isNotEmpty)
+      .toList();
+
+  bool get hasRemoteConfig => configUrl.isNotEmpty;
 
   bool get valid {
     if (environment != 'test' && environment != 'prod') return false;
-    if (configUrl.contains(RegExp(r'[\s\\]'))) return false;
-    final config = Uri.tryParse(configUrl);
-    if (config == null || !_safeHttps(config)) return false;
-    final origins = allowedOrigins.split(',').map((s) => s.trim()).toList();
-    if (origins.isEmpty ||
-        origins.any((s) => normalize(s, requireHttps: true) == null)) {
+    if (hasRemoteConfig) {
+      if (configUrl.contains(RegExp(r'[\s\\]'))) return false;
+      final config = Uri.tryParse(configUrl);
+      if (config == null || !_safeHttps(config)) return false;
+    }
+    final origins = _origins;
+    if (origins.any((s) => normalize(s, requireHttps: true) == null)) {
       return false;
     }
-    if (environment == 'prod') {
-      if (!explicitOrigins || !explicitConfigUrl) return false;
-      if (testHosts.contains(config.host.toLowerCase()) ||
-          origins.any(
-            (s) => testHosts.contains(Uri.parse(s).host.toLowerCase()),
-          )) {
-        return false;
-      }
+    if (environment == 'prod' && (!explicitOrigins || origins.isEmpty)) {
+      return false;
     }
     return true;
   }
@@ -48,9 +47,7 @@ class EndpointPolicy {
     if (!valid) return null;
     final value = normalize(raw, requireHttps: true);
     if (value == null) return null;
-    final allowed = allowedOrigins
-        .split(',')
-        .map((s) => normalize(s.trim(), requireHttps: true));
+    final allowed = _origins.map((s) => normalize(s, requireHttps: true));
     return allowed.contains(value) ? value : null;
   }
 

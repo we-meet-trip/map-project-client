@@ -6,7 +6,6 @@ const prod = EndpointPolicy(
   allowedOrigins: 'https://api.example.com',
   configUrl: 'https://config.example.com/prod.json',
   explicitOrigins: true,
-  explicitConfigUrl: true,
 );
 
 void main() {
@@ -60,82 +59,64 @@ void main() {
     },
   );
 
-  test(
-    'production cannot silently use a test default or its hosting alias',
-    () {
-      for (final config in [
-        'https://web.example.test/other.json',
-        'https://web.example.test/prod.json',
-      ]) {
-        expect(
-          EndpointPolicy(
-            environment: 'prod',
-            allowedOrigins: prod.allowedOrigins,
-            configUrl: config,
-            explicitOrigins: true,
-            explicitConfigUrl: true,
-          ).valid,
-          isFalse,
-        );
-      }
-      expect(
-        const EndpointPolicy(
-          environment: 'prod',
-          allowedOrigins: 'https://api.example.com',
-          configUrl: 'https://config.example.com/prod.json',
-          explicitOrigins: false,
-          explicitConfigUrl: true,
-        ).valid,
-        isFalse,
-      );
-      expect(
-        const EndpointPolicy(
-          environment: 'prod',
-          allowedOrigins: 'https://api-alt.example.test',
-          configUrl: 'https://config.example.com/prod.json',
-          explicitOrigins: true,
-          explicitConfigUrl: true,
-        ).valid,
-        isFalse,
-      );
-    },
-  );
-
-  test('production rejects every known test API host', () {
-    for (final host in ['api.example.test', 'api-alt.example.test']) {
-      expect(
-        EndpointPolicy(
-          environment: 'prod',
-          allowedOrigins: 'https://api.example.com,https://$host',
-          configUrl: 'https://config.example.com/prod.json',
-          explicitOrigins: true,
-          explicitConfigUrl: true,
-        ).valid,
-        isFalse,
-        reason: host,
-      );
-      expect(
-        EndpointPolicy(
-          environment: 'prod',
-          allowedOrigins: prod.allowedOrigins,
-          configUrl: 'https://$host/app_config.json',
-          explicitOrigins: true,
-          explicitConfigUrl: true,
-        ).valid,
-        isFalse,
-        reason: host,
-      );
+  test('production must declare its own API origins', () {
+    for (final policy in [
+      const EndpointPolicy(
+        environment: 'prod',
+        allowedOrigins: 'https://api.example.com',
+        configUrl: 'https://config.example.com/prod.json',
+        explicitOrigins: false,
+      ),
+      const EndpointPolicy(
+        environment: 'prod',
+        allowedOrigins: '',
+        configUrl: 'https://config.example.com/prod.json',
+        explicitOrigins: true,
+      ),
+    ]) {
+      expect(policy.valid, isFalse);
+      expect(policy.trusted('https://api.example.com'), isNull);
     }
+    // 원격 설정 주소는 선택이다.
+    const noRemote = EndpointPolicy(
+      environment: 'prod',
+      allowedOrigins: 'https://api.example.com',
+      configUrl: '',
+      explicitOrigins: true,
+    );
+    expect(noRemote.valid, isTrue);
+    expect(noRemote.hasRemoteConfig, isFalse);
+    expect(
+      noRemote.trusted('https://api.example.com'),
+      'https://api.example.com',
+    );
   });
 
-  test('test policy trusts the new test API and keeps the previous one', () {
+  test('default test policy is valid but trusts no server', () {
     const policy = EndpointPolicy(
       environment: 'test',
-      allowedOrigins:
-          'https://api.example.test,https://api-alt.example.test',
-      configUrl: 'https://web.example.test/app_config.json',
+      allowedOrigins: '',
+      configUrl: '',
       explicitOrigins: false,
-      explicitConfigUrl: false,
+    );
+    expect(policy.valid, isTrue);
+    expect(policy.hasRemoteConfig, isFalse);
+    expect(policy.trusted('https://api.example.test'), isNull);
+    expect(
+      policy.remote({
+        'environment': 'test',
+        'api_base_url': 'https://api.example.test',
+      }),
+      isNull,
+    );
+  });
+
+  test('test policy trusts only the configured origins', () {
+    const policy = EndpointPolicy(
+      environment: 'test',
+      allowedOrigins: 'https://api.example.test,https://api-alt.example.test',
+      configUrl: 'https://config.example.test/app_config.json',
+      explicitOrigins: true,
     );
     expect(policy.valid, isTrue);
     for (final origin in [
@@ -150,7 +131,7 @@ void main() {
     expect(
       policy.remote({
         'environment': 'test',
-        'api_base_url': 'https://example.test',
+        'api_base_url': 'https://api.example.com',
       }),
       isNull,
     );
@@ -160,9 +141,8 @@ void main() {
     const test = EndpointPolicy(
       environment: 'test',
       allowedOrigins: 'https://api-alt.example.test',
-      configUrl: 'https://web.example.test/app_config.json',
+      configUrl: 'https://config.example.test/app_config.json',
       explicitOrigins: false,
-      explicitConfigUrl: false,
     );
     expect(
       test.remote({'api_base_url': 'https://api-alt.example.test'}),
@@ -192,7 +172,6 @@ void main() {
           allowedOrigins: prod.allowedOrigins,
           configUrl: config,
           explicitOrigins: true,
-          explicitConfigUrl: true,
         );
         expect(policy.valid, isFalse);
         expect(policy.trusted('https://api.example.com'), isNull);

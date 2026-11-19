@@ -4,13 +4,16 @@ import 'package:map_project_client/core/services/deep_link_service.dart';
 /// 링크가 앱을 여는 길은 셋(웹 주소·앱 전용 주소·그 외)이고, 셋 중 어느 것도
 /// 조용히 무시되면 안 된다. 무시되면 링크를 눌러도 아무 일이 없는 것처럼 보인다.
 void main() {
-  test('웹 주소는 토큰을 뽑아낸다', () {
+  const origin = 'https://invite.example.test';
+
+  test('웹 주소는 초대 origin 을 줬을 때만 토큰을 뽑아낸다', () {
     expect(
-      DeepLinkService.routeOf(
-        Uri.parse('https://web.example.test/invite/TOK'),
-      ),
+      DeepLinkService.routeOf(Uri.parse('$origin/invite/TOK'), origin: origin),
       '/invite/TOK',
     );
+    // 기본 빌드는 INVITE_LINK_ORIGIN 이 비어 있어 https 초대를 받지 않는다.
+    expect(DeepLinkService.inviteOrigin, isEmpty);
+    expect(DeepLinkService.routeOf(Uri.parse('$origin/invite/TOK')), isNull);
   });
 
   test('앱 전용 주소도 같은 화면으로 간다', () {
@@ -43,19 +46,23 @@ void main() {
     for (final link in [
       'https://example.invalid/invite/TOK',
       'mapproject://invite/TOK',
-      'http://web.example.test/invite/TOK',
-      'https://web.example.test:8443/invite/TOK',
-      'https://user@web.example.test/invite/TOK',
-      'https://web.example.test/invite/TOK/extra',
-      'https://web.example.test/invite/TOK?redirect=x',
-      'https://web.example.test/invite/TOK#fragment',
+      'http://invite.example.test/invite/TOK',
+      'https://invite.example.test:8443/invite/TOK',
+      'https://user@invite.example.test/invite/TOK',
+      'https://invite.example.test/invite/TOK/extra',
+      'https://invite.example.test/invite/TOK?redirect=x',
+      'https://invite.example.test/invite/TOK#fragment',
       'mapproject-dev://invite/TOK/extra',
       'mapproject-dev://invite:443/TOK',
       'mapproject-dev://invite/a%2Fb',
       'mapproject-dev://invite/a%3Fb',
       'mapproject-dev://invite/TOK?environment=prod',
     ]) {
-      expect(DeepLinkService.routeOf(Uri.parse(link)), isNull, reason: link);
+      expect(
+        DeepLinkService.routeOf(Uri.parse(link), origin: origin),
+        isNull,
+        reason: link,
+      );
     }
   });
 }

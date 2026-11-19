@@ -161,13 +161,13 @@ void main() {
     test('발급 응답은 서버가 만든 주소를 그대로 준다', () {
       final invite = InviteLinkResponse.fromJson({
         'token': 'tok',
-        'url': 'https://web.example.test/invite/tok',
+        'url': 'https://invite.example.test/invite/tok',
         'version': 2,
         'expires_at': '2026-08-17T23:59:59+09:00',
       });
 
       expect(invite.token, 'tok');
-      expect(invite.url, 'https://web.example.test/invite/tok');
+      expect(invite.url, 'https://invite.example.test/invite/tok');
       expect(invite.version, 2);
       expect(invite.expiresAt, isNotNull);
     });

@@ -56,7 +56,7 @@ void main() {
 
   test('같은 사람에게는 늘 같은 아바타 색이 나온다', () {
     // String.hashCode 는 실행마다 시드가 달라 같은 계정도 색이 바뀌었다.
-    const id = 'maintainer@example.com';
+    const id = 'reviewer@example.com';
     final first = AppColors.avatarColorOf(id);
     for (var i = 0; i < 50; i++) {
       expect(AppColors.avatarColorOf(id), first);

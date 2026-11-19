@@ -1,7 +1,11 @@
 import 'package:url_launcher/url_launcher.dart';
 
-/// 문의·신고 메일의 수신 주소. 한 곳에서만 바꾸면 전 화면에 적용된다.
-const String supportEmail = 'maintainer@example.com';
+/// 문의·신고 메일의 수신 주소. 빌드할 때 `--dart-define=SUPPORT_EMAIL=...` 로 넣는다.
+/// 공개본 기본값은 비어 있고, 비어 있으면 메일 문의 버튼을 감춘다.
+const String supportEmail = String.fromEnvironment('SUPPORT_EMAIL');
+
+/// 문의 메일 주소를 줬는지.
+const bool hasSupportEmail = supportEmail != '';
 
 /// 기본 메일 앱을 문의 양식으로 연다. 열 수 있으면 true.
 ///
@@ -11,7 +15,9 @@ Future<bool> launchSupportMail({
   required String subject,
   String body = '',
 }) async {
-  final query = 'subject=${Uri.encodeComponent(subject)}'
+  if (!hasSupportEmail) return false;
+  final query =
+      'subject=${Uri.encodeComponent(subject)}'
       '${body.isEmpty ? '' : '&body=${Uri.encodeComponent(body)}'}';
   final uri = Uri.parse('mailto:$supportEmail?$query');
   try {

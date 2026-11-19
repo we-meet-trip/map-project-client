@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -153,8 +152,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         child: SignInWithAppleButton(
                           onPressed: _appleLogin,
                           text: 'Apple로 로그인',
-                          borderRadius:
-                              BorderRadius.circular(kAuthButtonRadius),
+                          borderRadius: BorderRadius.circular(
+                            kAuthButtonRadius,
+                          ),
                         ),
                       ),
                     ],
@@ -179,26 +179,28 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                           ),
                         ),
-                        const Text(
-                          '|',
-                          style: TextStyle(
-                            color: AppColors.background,
-                            fontWeight: FontWeight.w100,
-                            fontSize: 12,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () =>
-                              launchSupportMail(subject: '[MAP 문의]'),
-                          child: Text(
-                            '문의하기',
+                        if (hasSupportEmail) ...[
+                          const Text(
+                            '|',
                             style: TextStyle(
                               color: AppColors.background,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w100,
                               fontSize: 12,
                             ),
                           ),
-                        ),
+                          TextButton(
+                            onPressed: () =>
+                                launchSupportMail(subject: '[MAP 문의]'),
+                            child: Text(
+                              '문의하기',
+                              style: TextStyle(
+                                color: AppColors.background,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ],

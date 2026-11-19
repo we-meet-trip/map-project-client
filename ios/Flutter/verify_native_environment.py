@@ -19,8 +19,10 @@ import sys
 from urllib.parse import urlsplit
 
 ENVIRONMENTS = ('test', 'prod')
-# 시험 빌드에서 INVITE_LINK_ORIGIN 을 주지 않았을 때 쓰는 초대 도메인.
-TEST_INVITE_ORIGIN = 'https://web.example.test'
+# INVITE_LINK_ORIGIN 을 주지 않은 빌드의 앱 링크 도메인. 결코 존재하지 않는 예약
+# 도메인(.invalid)이라 도메인 검증이 일어나지 않고, 초대는 앱 전용 스킴으로만 열린다.
+# Android 빌드 파일(android/app/build.gradle.kts)과 같은 값이다.
+UNSET_INVITE_HOST = 'invite.example.invalid'
 
 
 def native_identity(environment):
@@ -50,14 +52,11 @@ def decode_defines(raw):
     return defines
 
 
-def invite_host(environment, origin):
+def invite_host(origin):
     """초대 링크 origin 에서 앱 링크 도메인을 뽑는다. 기본 포트의 https DNS 이름만 받는다."""
     origin = origin.strip()
     if not origin:
-        if environment == 'test':
-            origin = TEST_INVITE_ORIGIN
-        else:
-            raise ValueError('INVITE_LINK_ORIGIN is required for prod')
+        return UNSET_INVITE_HOST
     try:
         uri = urlsplit(origin)
         port = uri.port
@@ -95,7 +94,7 @@ def expected_settings(defines):
         'PRODUCT_BUNDLE_IDENTIFIER': identity['NATIVE_APPLICATION_ID'],
         'MAP_INVITE_SCHEME': identity['INVITE_URL_SCHEME'],
         'MAP_KAKAO_NATIVE_KEY': kakao_key,
-        'MAP_INVITE_HOST': invite_host(environment, defines.get('INVITE_LINK_ORIGIN', '')),
+        'MAP_INVITE_HOST': invite_host(defines.get('INVITE_LINK_ORIGIN', '')),
     }
 
 

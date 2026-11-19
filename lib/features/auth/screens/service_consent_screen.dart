@@ -223,21 +223,23 @@ class _ServiceConsentScreenState extends State<ServiceConsentScreen> {
                   '이용약관 ${status.termsVersion} · 개인정보처리방침 ${status.privacyVersion}',
                   style: const TextStyle(fontSize: 12),
                 ),
-              Wrap(
-                spacing: 8,
-                children: [
-                  TextButton.icon(
-                    onPressed: () => _openPolicy('terms'),
-                    icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                    label: const Text('이용약관 읽기'),
-                  ),
-                  TextButton.icon(
-                    onPressed: () => _openPolicy('privacy'),
-                    icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                    label: const Text('개인정보처리방침 읽기'),
-                  ),
-                ],
-              ),
+              // 정책 문서 사이트를 준 빌드에서만 원문 링크를 보인다.
+              if (AppEnvironment.hasPublicSite)
+                Wrap(
+                  spacing: 8,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () => _openPolicy('terms'),
+                      icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                      label: const Text('이용약관 읽기'),
+                    ),
+                    TextButton.icon(
+                      onPressed: () => _openPolicy('privacy'),
+                      icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                      label: const Text('개인정보처리방침 읽기'),
+                    ),
+                  ],
+                ),
               if (_acting || store.loading)
                 const Padding(
                   padding: EdgeInsets.all(16),

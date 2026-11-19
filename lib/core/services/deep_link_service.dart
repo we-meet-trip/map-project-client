@@ -35,14 +35,18 @@ class DeepLinkService {
   /// 받는 형태는 둘이다. 웹 주소는 안드로이드에서 도메인 검증을 거쳐 앱으로
   /// 오고, 앱 전용 주소는 검증이 필요 없어 iOS 와 개발 중 확인에 쓴다. 둘의
   /// 이름이 어긋나면 한쪽 기기에서만 링크가 조용히 무시된다.
-  static String? routeOf(Uri uri) {
+  ///
+  /// [origin] 은 시험에서만 바꾼다. 기본값은 빌드값 INVITE_LINK_ORIGIN 이고, 비어 있으면
+  /// https 초대 링크를 받지 않는다(앱 전용 주소만 받는다).
+  static String? routeOf(Uri uri, {String origin = inviteOrigin}) {
     if (!const {'test', 'prod'}.contains(AppEnvironment.name)) return null;
     if (uri.userInfo.isNotEmpty || uri.hasQuery || uri.hasFragment) return null;
     String? token;
 
     // 웹 주소: https://도메인/invite/TOKEN
     if (uri.scheme == 'https' &&
-        uri.origin == inviteOrigin &&
+        origin.isNotEmpty &&
+        uri.origin == origin &&
         uri.pathSegments.length == 2 &&
         uri.pathSegments[0] == 'invite') {
       token = uri.pathSegments[1];

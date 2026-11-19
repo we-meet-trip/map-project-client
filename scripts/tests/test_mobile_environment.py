@@ -58,12 +58,15 @@ class MobileEnvironmentTest(unittest.TestCase):
             ios.verify({**settings, 'DART_DEFINES': 'malformed'})
 
     def test_invite_origin_must_be_a_default_port_https_dns_origin(self):
-        self.assertEqual(ios.invite_host('prod', 'https://Invite.Example.com/'), 'invite.example.com')
-        for origin in ('', 'http://invite.example.com', 'https://invite.example.com:8443',
+        self.assertEqual(ios.invite_host('https://Invite.Example.com/'), 'invite.example.com')
+        # 주지 않으면 앱 링크 도메인은 예약 도메인이다(앱 전용 스킴만 쓴다).
+        self.assertEqual(ios.invite_host(''), ios.UNSET_INVITE_HOST)
+        self.assertTrue(ios.UNSET_INVITE_HOST.endswith('.invalid'))
+        for origin in ('http://invite.example.com', 'https://invite.example.com:8443',
                        'https://invite.example.com/path', 'https://user@invite.example.com',
                        'https://127.0.0.1', 'https://localhost'):
             with self.subTest(origin=origin), self.assertRaises(ValueError):
-                ios.invite_host('prod', origin)
+                ios.invite_host(origin)
 
     def test_kakao_key_format_is_checked(self):
         with self.assertRaises(ValueError):

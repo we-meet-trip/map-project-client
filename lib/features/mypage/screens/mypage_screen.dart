@@ -120,7 +120,8 @@ class MypageScreen extends StatelessWidget {
           width: double.infinity,
           color: AppColors.mypageDivider,
         ),
-        _MenuItem(label: '고객센터', onTap: () => _openSupportMail(context)),
+        if (hasSupportEmail)
+          _MenuItem(label: '고객센터', onTap: () => _openSupportMail(context)),
         _MenuItem(
           label: '신고 내역 및 차단 관리',
           onTap: () => openModerationCenter(context),
@@ -133,7 +134,8 @@ class MypageScreen extends StatelessWidget {
             ),
           ),
         ),
-        _MenuItem(label: '약관 및 정책', onTap: () => _showPolicies(context)),
+        if (AppEnvironment.hasPublicSite)
+          _MenuItem(label: '약관 및 정책', onTap: () => _showPolicies(context)),
         const Spacer(),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),

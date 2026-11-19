@@ -56,15 +56,20 @@ mapOf("NATIVE_APPLICATION_ID" to nativeApplicationId,
     "INVITE_URL_SCHEME" to inviteScheme).forEach { (name, expected) ->
     require(dartDefines[name] == null || dartDefines[name] == expected) { "$name does not match APP_ENV" }
 }
-val inviteOrigin = dartDefines["INVITE_LINK_ORIGIN"]
-    ?: if (appEnvironment == "test") "https://web.example.test" else ""
-val inviteUri = requireNotNull(runCatching { URI(inviteOrigin) }.getOrNull()) {
-    "Invalid INVITE_LINK_ORIGIN"
+// 초대 링크를 받을 https origin. 주지 않으면 앱 링크(https)는 쓰지 않고 앱 전용
+// 스킴만 쓴다. 매니페스트 자리는 결코 존재하지 않는 예약 도메인(.invalid)으로 채워
+// 도메인 검증이 일어나지 않게 한다. iOS 의 EnvironmentDefaults.xcconfig 와 같은 값이다.
+val inviteOrigin = dartDefines["INVITE_LINK_ORIGIN"].orEmpty()
+val deepLinkHost = if (inviteOrigin.isEmpty()) "invite.example.invalid" else {
+    val inviteUri = requireNotNull(runCatching { URI(inviteOrigin) }.getOrNull()) {
+        "Invalid INVITE_LINK_ORIGIN"
+    }
+    require(inviteUri.scheme == "https" && !inviteUri.host.isNullOrEmpty()
+            && inviteUri.rawUserInfo == null && inviteUri.rawQuery == null && inviteUri.rawFragment == null
+            && (inviteUri.rawPath.isNullOrEmpty() || inviteUri.rawPath == "/")
+            && (inviteUri.port == -1 || inviteUri.port == 443)) { "Invalid INVITE_LINK_ORIGIN" }
+    inviteUri.host
 }
-require(inviteUri.scheme == "https" && !inviteUri.host.isNullOrEmpty()
-        && inviteUri.rawUserInfo == null && inviteUri.rawQuery == null && inviteUri.rawFragment == null
-        && (inviteUri.rawPath.isNullOrEmpty() || inviteUri.rawPath == "/")
-        && (inviteUri.port == -1 || inviteUri.port == 443)) { "Invalid INVITE_LINK_ORIGIN" }
 
 val googleMapsApiKey = dartDefines["GOOGLE_MAPS_ANDROID_API_KEY"]?.trim() ?: ""
 
@@ -83,8 +88,8 @@ android {
     }
 
     defaultConfig {
-        // 지도 SDK 인증은 이 식별자로 이뤄진다. 지도 콘솔에 이 이름이 등록돼
-        // 있어야 지도가 뜬다 — 등록되지 않으면 401 로 타일이 비어 나온다.
+        // 지도 API 키를 앱 패키지 이름으로 제한했다면 이 식별자가 키 설정에
+        // 등록돼 있어야 지도가 뜬다.
         applicationId = nativeApplicationId
         // Google Maps Flutter requires Android API 24 or newer.
         minSdk = 24
@@ -95,7 +100,7 @@ android {
         // 초대 링크를 받는 도메인. 이 도메인의 /.well-known/assetlinks.json 에
         // 아래 applicationId 와 릴리스 서명 지문이 올라가 있어야 링크가 앱으로
         // 열린다(그렇지 않으면 브라우저로만 열린다).
-        manifestPlaceholders["deepLinkHost"] = inviteUri.host
+        manifestPlaceholders["deepLinkHost"] = deepLinkHost
         manifestPlaceholders["inviteScheme"] = inviteScheme
         manifestPlaceholders["kakaoNativeAppKey"] = kakaoNativeAppKey
         manifestPlaceholders["appLabel"] = if (appEnvironment == "test") "MAP Dev" else "MAP"

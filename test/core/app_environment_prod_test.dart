@@ -18,13 +18,13 @@ void main() {
       );
       expect(
         DeepLinkService.routeOf(
-          Uri.parse('https://web.example.test/invite/TOK'),
+          Uri.parse('https://invite.example.test/invite/TOK'),
         ),
         isNull,
       );
     });
 
-    test('missing production policy origin cannot fall back to test', () {
+    test('production without a policy site shows no policy links', () {
       expect(AppEnvironment.publicOrigin, isEmpty);
       expect(() => AppEnvironment.policyUrl('privacy.html'), throwsStateError);
     });
