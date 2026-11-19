@@ -43,6 +43,7 @@ class AppEnvironment {
             const {
               'web.example.test',
               'web.example.test',
+              'api.example.test',
               'api-alt.example.test',
             }.contains(origin.host))) {
       throw StateError('Invalid PUBLIC_SITE_ORIGIN for the app environment');

@@ -16,6 +16,7 @@ class EndpointPolicy {
   final bool explicitConfigUrl;
 
   static const testHosts = {
+    'api.example.test',
     'api-alt.example.test',
     'web.example.test',
     'web.example.test',
