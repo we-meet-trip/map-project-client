@@ -1,0 +1,46 @@
+digraph screen_flow {
+  graph [rankdir=LR, bgcolor="@BG@", fontname="Pretendard, Noto Sans KR, sans-serif", fontcolor="@FG@",
+         nodesep=0.35, ranksep=0.75, pad=0.3];
+  node  [shape=box, style="rounded,filled", fontname="Pretendard, Noto Sans KR, sans-serif", fontsize=12,
+         fontcolor="@FG@", color="@SVC_EDGE@", fillcolor="@SVC_FILL@", penwidth=1.2, margin="0.16,0.07"];
+  edge  [color="@LINE@", fontname="Pretendard, Noto Sans KR, sans-serif", fontsize=10, fontcolor="@FG@", arrowsize=0.7];
+
+  splash  [label="시작\n/splash"];
+  notice  [label="권한 안내\n/permission-notice"];
+  login   [label="로그인\n이메일 · 카카오 · Apple"];
+  consent [label="서비스 이용 동의\n/service-consent"];
+
+  subgraph cluster_tabs {
+    label="하단 탭"; labeljust=l; fontsize=11; style="rounded,dashed"; color="@LINE@";
+    home  [label="홈\n/"];
+    trip  [label="여행\n/trip"];
+    saved [label="저장한 일정\n/saved"];
+    chat  [label="대화방\n/chat"];
+    my    [label="마이페이지\n/mypage"];
+  }
+
+  plan    [label="여행 만들기\n추천 · 직접 계획 · 랜덤"];
+  aiok    [label="외부 AI 전송 동의\n(기능별, 기본 없음)", style="rounded,filled,dashed", fillcolor="@OPT_FILL@", color="@OPT_EDGE@"];
+  result  [label="일정 결과·저장"];
+  explore [label="장소 탐색\n→ 장소 상세"];
+  photos  [label="사진 보기\n(누를 때만)", style="rounded,filled,dashed", fillcolor="@OPT_FILL@", color="@OPT_EDGE@"];
+  detail  [label="일정 상세\n경로 · 길안내"];
+  room    [label="대화방\n/chat/:id"];
+  invite  [label="초대 링크\n/invite/:token"];
+  vision  [label="카메라 질문\n/vision"];
+
+  splash -> notice [label="처음 한 번"];
+  notice -> login;
+  login -> consent [label="동의 전"];
+  consent -> home;
+  home -> {trip saved chat my vision} [arrowhead=none, style=dotted];
+  trip -> plan;
+  plan -> aiok [label="추천일 때"];
+  aiok -> result;
+  plan -> result [label="직접 계획"];
+  trip -> explore;
+  explore -> photos;
+  saved -> detail;
+  chat -> room;
+  invite -> room [label="토큰 확인 뒤"];
+}

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Title: sdk_boundary Pages: 1 -->
+<svg width="1049pt" height="590pt"
+ viewBox="0.00 0.00 1049.00 590.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 568.6)">
+<title>sdk_boundary</title>
+<polygon fill="#0d1117" stroke="none" points="-21.6,21.6 -21.6,-568.6 1027.51,-568.6 1027.51,21.6 -21.6,21.6"/>
+<g id="clust1" class="cluster">
+<title>cluster_device</title>
+<path fill="#0d1117" stroke="#8b949e" stroke-dasharray="5,2" d="M20,-160C20,-160 477.83,-160 477.83,-160 483.83,-160 489.83,-166 489.83,-172 489.83,-172 489.83,-527 489.83,-527 489.83,-533 483.83,-539 477.83,-539 477.83,-539 20,-539 20,-539 14,-539 8,-533 8,-527 8,-527 8,-172 8,-172 8,-166 14,-160 20,-160"/>
+<text xml:space="preserve" text-anchor="middle" x="26.5" y="-523.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">기기</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_behind</title>
+<path fill="#0d1117" stroke="#8b949e" stroke-dasharray="5,2" d="M602.83,-8C602.83,-8 985.91,-8 985.91,-8 991.91,-8 997.91,-14 997.91,-20 997.91,-20 997.91,-226 997.91,-226 997.91,-232 991.91,-238 985.91,-238 985.91,-238 602.83,-238 602.83,-238 596.83,-238 590.83,-232 590.83,-226 590.83,-226 590.83,-20 590.83,-20 590.83,-14 596.83,-8 602.83,-8"/>
+<text xml:space="preserve" text-anchor="middle" x="673.08" y="-223.55" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="11.00" fill="#e6edf3">BFF 뒤 (앱은 직접 부르지 않는다)</text>
+</g>
+<!-- app -->
+<g id="node1" class="node">
+<title>app</title>
+<path fill="#0c2d6b" stroke="#58a6ff" stroke-width="1.2" d="M124.54,-319C124.54,-319 28,-319 28,-319 22,-319 16,-313 16,-307 16,-307 16,-295 16,-295 16,-289 22,-283 28,-283 28,-283 124.54,-283 124.54,-283 130.54,-283 136.54,-289 136.54,-295 136.54,-295 136.54,-307 136.54,-307 136.54,-313 130.54,-319 124.54,-319"/>
+<text xml:space="preserve" text-anchor="middle" x="76.27" y="-297.1" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">map&#45;project&#45;client</text>
+</g>
+<!-- gmaps -->
+<g id="node2" class="node">
+<title>gmaps</title>
+<path fill="#161b22" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="5,2" d="M460.45,-508C460.45,-508 364.66,-508 364.66,-508 358.66,-508 352.66,-502 352.66,-496 352.66,-496 352.66,-484 352.66,-484 352.66,-478 358.66,-472 364.66,-472 364.66,-472 460.45,-472 460.45,-472 466.45,-472 472.45,-478 472.45,-484 472.45,-484 472.45,-496 472.45,-496 472.45,-502 466.45,-508 460.45,-508"/>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-486.1" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">Google Maps SDK</text>
+</g>
+<!-- app&#45;&gt;gmaps -->
+<g id="edge5" class="edge">
+<title>app&#45;&gt;gmaps</title>
+<path fill="none" stroke="#8b949e" d="M106.95,-319.43C130.54,-333.96 164.46,-354.61 194.54,-372 259.9,-409.78 276.84,-418.17 343.29,-454 351.5,-458.43 360.29,-463.11 368.74,-467.58"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="367.39,-469.63 374.72,-470.73 369.67,-465.3 367.39,-469.63"/>
+<text xml:space="preserve" text-anchor="middle" x="239.91" y="-425.17" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="10.00" fill="#e6edf3">클라이언트 키</text>
+</g>
+<!-- kakao -->
+<g id="node3" class="node">
+<title>kakao</title>
+<path fill="#161b22" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="5,2" d="M455.58,-208.04C455.58,-208.04 369.54,-208.04 369.54,-208.04 363.54,-208.04 357.54,-202.04 357.54,-196.04 357.54,-196.04 357.54,-179.96 357.54,-179.96 357.54,-173.96 363.54,-167.96 369.54,-167.96 369.54,-167.96 455.58,-167.96 455.58,-167.96 461.58,-167.96 467.58,-173.96 467.58,-179.96 467.58,-179.96 467.58,-196.04 467.58,-196.04 467.58,-202.04 461.58,-208.04 455.58,-208.04"/>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-191.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">카카오 SDK</text>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-176.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">(카카오톡 앱 전환)</text>
+</g>
+<!-- app&#45;&gt;kakao -->
+<g id="edge4" class="edge">
+<title>app&#45;&gt;kakao</title>
+<path fill="none" stroke="#8b949e" d="M121.21,-282.48C143.09,-273.51 170.04,-262.86 194.54,-254.25 246.15,-236.12 305.62,-218.17 349.24,-205.53"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="349.7,-207.95 355.74,-203.66 348.34,-203.24 349.7,-207.95"/>
+<text xml:space="preserve" text-anchor="middle" x="239.91" y="-257.5" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="10.00" fill="#e6edf3">네이티브 앱 키</text>
+</g>
+<!-- apple -->
+<g id="node4" class="node">
+<title>apple</title>
+<path fill="#161b22" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="5,2" d="M458.95,-284.04C458.95,-284.04 366.16,-284.04 366.16,-284.04 360.16,-284.04 354.16,-278.04 354.16,-272.04 354.16,-272.04 354.16,-255.96 354.16,-255.96 354.16,-249.96 360.16,-243.96 366.16,-243.96 366.16,-243.96 458.95,-243.96 458.95,-243.96 464.95,-243.96 470.95,-249.96 470.95,-255.96 470.95,-255.96 470.95,-272.04 470.95,-272.04 470.95,-278.04 464.95,-284.04 458.95,-284.04"/>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-267.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">Sign in with Apple</text>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-252.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">(iOS)</text>
+</g>
+<!-- app&#45;&gt;apple -->
+<g id="edge3" class="edge">
+<title>app&#45;&gt;apple</title>
+<path fill="none" stroke="#8b949e" d="M136.89,-293.07C155.36,-290.69 175.78,-288.15 194.54,-286 245.16,-280.2 302.51,-274.42 345.53,-270.24"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="345.71,-272.69 352.44,-269.57 345.23,-267.81 345.71,-272.69"/>
+</g>
+<!-- device -->
+<g id="node5" class="node">
+<title>device</title>
+<path fill="#161b22" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="5,2" d="M469.83,-360.04C469.83,-360.04 355.29,-360.04 355.29,-360.04 349.29,-360.04 343.29,-354.04 343.29,-348.04 343.29,-348.04 343.29,-331.96 343.29,-331.96 343.29,-325.96 349.29,-319.96 355.29,-319.96 355.29,-319.96 469.83,-319.96 469.83,-319.96 475.83,-319.96 481.83,-325.96 481.83,-331.96 481.83,-331.96 481.83,-348.04 481.83,-348.04 481.83,-354.04 475.83,-360.04 469.83,-360.04"/>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-343.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">위치 · 카메라 · 음성 인식</text>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-328.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">· 나침반 · 사진</text>
+</g>
+<!-- app&#45;&gt;device -->
+<g id="edge2" class="edge">
+<title>app&#45;&gt;device</title>
+<path fill="none" stroke="#8b949e" d="M137.03,-307.97C192.19,-314.41 274.39,-324 334.47,-331.01"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="334.06,-333.42 341.29,-331.8 334.62,-328.56 334.06,-333.42"/>
+<text xml:space="preserve" text-anchor="middle" x="239.91" y="-328.39" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="10.00" fill="#e6edf3">권한</text>
+</g>
+<!-- store -->
+<g id="node6" class="node">
+<title>store</title>
+<path fill="#3b2e00" stroke="#d29922" stroke-width="1.2" d="M468.33,-436.04C468.33,-436.04 356.79,-436.04 356.79,-436.04 350.79,-436.04 344.79,-430.04 344.79,-424.04 344.79,-424.04 344.79,-407.96 344.79,-407.96 344.79,-401.96 350.79,-395.96 356.79,-395.96 356.79,-395.96 468.33,-395.96 468.33,-395.96 474.33,-395.96 480.33,-401.96 480.33,-407.96 480.33,-407.96 480.33,-424.04 480.33,-424.04 480.33,-430.04 474.33,-436.04 468.33,-436.04"/>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-419.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">기기 저장</text>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-404.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">Hive · secure storage</text>
+</g>
+<!-- app&#45;&gt;store -->
+<g id="edge1" class="edge">
+<title>app&#45;&gt;store</title>
+<path fill="none" stroke="#8b949e" d="M122.39,-319.5C144.08,-328.19 170.53,-338.48 194.54,-347 241.27,-363.57 294.3,-380.47 336.24,-393.39"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="335.35,-395.68 342.76,-395.4 336.79,-391 335.35,-395.68"/>
+</g>
+<!-- bff -->
+<g id="node7" class="node">
+<title>bff</title>
+<path fill="#0c2d6b" stroke="#58a6ff" stroke-width="1.2" d="M458.95,-132.04C458.95,-132.04 366.16,-132.04 366.16,-132.04 360.16,-132.04 354.16,-126.04 354.16,-120.04 354.16,-120.04 354.16,-103.96 354.16,-103.96 354.16,-97.96 360.16,-91.96 366.16,-91.96 366.16,-91.96 458.95,-91.96 458.95,-91.96 464.95,-91.96 470.95,-97.96 470.95,-103.96 470.95,-103.96 470.95,-120.04 470.95,-120.04 470.95,-126.04 464.95,-132.04 458.95,-132.04"/>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-115.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">map&#45;project&#45;user</text>
+<text xml:space="preserve" text-anchor="middle" x="412.56" y="-100.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">(BFF)</text>
+</g>
+<!-- app&#45;&gt;bff -->
+<g id="edge6" class="edge">
+<title>app&#45;&gt;bff</title>
+<path fill="none" stroke="#8b949e" d="M92.54,-282.52C113.35,-258.37 152.84,-216.15 194.54,-190.5 241.61,-161.55 300.95,-141.01 345.68,-128.22"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="346.32,-130.59 352.4,-126.33 344.99,-125.87 346.32,-130.59"/>
+<text xml:space="preserve" text-anchor="middle" x="239.91" y="-206.5" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="10.00" fill="#e6edf3">HTTPS /api/v1</text>
+<text xml:space="preserve" text-anchor="middle" x="239.91" y="-193.75" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="10.00" fill="#e6edf3">/ws/chat · /ws/vision</text>
+</g>
+<!-- agent -->
+<g id="node8" class="node">
+<title>agent</title>
+<path fill="#0c2d6b" stroke="#58a6ff" stroke-width="1.2" d="M710.37,-132.04C710.37,-132.04 610.83,-132.04 610.83,-132.04 604.83,-132.04 598.83,-126.04 598.83,-120.04 598.83,-120.04 598.83,-103.96 598.83,-103.96 598.83,-97.96 604.83,-91.96 610.83,-91.96 610.83,-91.96 710.37,-91.96 710.37,-91.96 716.37,-91.96 722.37,-97.96 722.37,-103.96 722.37,-103.96 722.37,-120.04 722.37,-120.04 722.37,-126.04 716.37,-132.04 710.37,-132.04"/>
+<text xml:space="preserve" text-anchor="middle" x="660.6" y="-115.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">map&#45;project&#45;agent</text>
+<text xml:space="preserve" text-anchor="middle" x="660.6" y="-100.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">추천</text>
+</g>
+<!-- bff&#45;&gt;agent -->
+<g id="edge7" class="edge">
+<title>bff&#45;&gt;agent</title>
+<path fill="none" stroke="#8b949e" d="M471.25,-112C506.77,-112 552.53,-112 590.05,-112"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="589.9,-114.45 596.9,-112 589.9,-109.55 589.9,-114.45"/>
+</g>
+<!-- hub -->
+<g id="node9" class="node">
+<title>hub</title>
+<path fill="#0c2d6b" stroke="#58a6ff" stroke-width="1.2" d="M705.12,-208.04C705.12,-208.04 616.08,-208.04 616.08,-208.04 610.08,-208.04 604.08,-202.04 604.08,-196.04 604.08,-196.04 604.08,-179.96 604.08,-179.96 604.08,-173.96 610.08,-167.96 616.08,-167.96 616.08,-167.96 705.12,-167.96 705.12,-167.96 711.12,-167.96 717.12,-173.96 717.12,-179.96 717.12,-179.96 717.12,-196.04 717.12,-196.04 717.12,-202.04 711.12,-208.04 705.12,-208.04"/>
+<text xml:space="preserve" text-anchor="middle" x="660.6" y="-191.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">map&#45;project&#45;hub</text>
+<text xml:space="preserve" text-anchor="middle" x="660.6" y="-176.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">외부 데이터</text>
+</g>
+<!-- bff&#45;&gt;hub -->
+<g id="edge8" class="edge">
+<title>bff&#45;&gt;hub</title>
+<path fill="none" stroke="#8b949e" d="M471.25,-129.82C508.51,-141.33 557.03,-156.32 595.5,-168.2"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="594.69,-170.51 602.1,-170.24 596.14,-165.83 594.69,-170.51"/>
+</g>
+<!-- yolo -->
+<g id="node10" class="node">
+<title>yolo</title>
+<path fill="#0c2d6b" stroke="#58a6ff" stroke-width="1.2" d="M705.87,-56.04C705.87,-56.04 615.33,-56.04 615.33,-56.04 609.33,-56.04 603.33,-50.04 603.33,-44.04 603.33,-44.04 603.33,-27.96 603.33,-27.96 603.33,-21.96 609.33,-15.96 615.33,-15.96 615.33,-15.96 705.87,-15.96 705.87,-15.96 711.87,-15.96 717.87,-21.96 717.87,-27.96 717.87,-27.96 717.87,-44.04 717.87,-44.04 717.87,-50.04 711.87,-56.04 705.87,-56.04"/>
+<text xml:space="preserve" text-anchor="middle" x="660.6" y="-39.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">map&#45;project&#45;yolo</text>
+<text xml:space="preserve" text-anchor="middle" x="660.6" y="-24.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">비전</text>
+</g>
+<!-- bff&#45;&gt;yolo -->
+<g id="edge9" class="edge">
+<title>bff&#45;&gt;yolo</title>
+<path fill="none" stroke="#8b949e" d="M471.25,-94.18C508.37,-82.71 556.69,-67.79 595.09,-55.93"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="595.71,-58.3 601.68,-53.89 594.27,-53.62 595.71,-58.3"/>
+</g>
+<!-- extai -->
+<g id="node11" class="node">
+<title>extai</title>
+<path fill="#2b1d3d" stroke="#a371f7" stroke-width="1.2" stroke-dasharray="5,2" d="M977.91,-87.04C977.91,-87.04 851.37,-87.04 851.37,-87.04 845.37,-87.04 839.37,-81.04 839.37,-75.04 839.37,-75.04 839.37,-58.96 839.37,-58.96 839.37,-52.96 845.37,-46.96 851.37,-46.96 851.37,-46.96 977.91,-46.96 977.91,-46.96 983.91,-46.96 989.91,-52.96 989.91,-58.96 989.91,-58.96 989.91,-75.04 989.91,-75.04 989.91,-81.04 983.91,-87.04 977.91,-87.04"/>
+<text xml:space="preserve" text-anchor="middle" x="914.64" y="-70.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">외부 AI 처리자</text>
+<text xml:space="preserve" text-anchor="middle" x="914.64" y="-55.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">(기능별 동의 뒤, 기본 꺼짐)</text>
+</g>
+<!-- agent&#45;&gt;extai -->
+<g id="edge10" class="edge">
+<title>agent&#45;&gt;extai</title>
+<path fill="none" stroke="#8b949e" stroke-dasharray="5,2" d="M722.93,-101.05C755.31,-95.27 795.5,-88.09 830.62,-81.82"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="831.02,-84.24 837.48,-80.6 830.16,-79.42 831.02,-84.24"/>
+</g>
+<!-- pub -->
+<g id="node12" class="node">
+<title>pub</title>
+<path fill="#161b22" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="5,2" d="M954.66,-208.04C954.66,-208.04 874.62,-208.04 874.62,-208.04 868.62,-208.04 862.62,-202.04 862.62,-196.04 862.62,-196.04 862.62,-179.96 862.62,-179.96 862.62,-173.96 868.62,-167.96 874.62,-167.96 874.62,-167.96 954.66,-167.96 954.66,-167.96 960.66,-167.96 966.66,-173.96 966.66,-179.96 966.66,-179.96 966.66,-196.04 966.66,-196.04 966.66,-202.04 960.66,-208.04 954.66,-208.04"/>
+<text xml:space="preserve" text-anchor="middle" x="914.64" y="-191.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">공공·외부 API</text>
+<text xml:space="preserve" text-anchor="middle" x="914.64" y="-176.6" font-family="Pretendard, Noto Sans KR, sans-serif" font-size="12.00" fill="#e6edf3">날씨 · 교통 · 장소</text>
+</g>
+<!-- hub&#45;&gt;pub -->
+<g id="edge12" class="edge">
+<title>hub&#45;&gt;pub</title>
+<path fill="none" stroke="#8b949e" d="M717.54,-188C757.97,-188 812.51,-188 853.81,-188"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="853.64,-190.45 860.64,-188 853.64,-185.55 853.64,-190.45"/>
+</g>
+<!-- yolo&#45;&gt;extai -->
+<g id="edge11" class="edge">
+<title>yolo&#45;&gt;extai</title>
+<path fill="none" stroke="#8b949e" stroke-dasharray="5,2" d="M718.16,-42.96C751.36,-47.04 793.9,-52.27 830.81,-56.81"/>
+<polygon fill="#8b949e" stroke="#8b949e" points="830.34,-59.22 837.59,-57.65 830.94,-54.36 830.34,-59.22"/>
+</g>
+</g>
+</svg>

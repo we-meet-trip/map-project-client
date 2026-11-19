@@ -1,0 +1,41 @@
+digraph sdk_boundary {
+  graph [rankdir=LR, bgcolor="@BG@", fontname="Pretendard, Noto Sans KR, sans-serif", fontcolor="@FG@",
+         nodesep=0.5, ranksep=1.6, pad=0.3, newrank=true];
+  node  [shape=box, style="rounded,filled", fontname="Pretendard, Noto Sans KR, sans-serif", fontsize=12,
+         fontcolor="@FG@", color="@SVC_EDGE@", fillcolor="@SVC_FILL@", penwidth=1.2, margin="0.16,0.07"];
+  edge  [color="@LINE@", fontname="Pretendard, Noto Sans KR, sans-serif", fontsize=10, fontcolor="@FG@", arrowsize=0.7];
+
+  subgraph cluster_device {
+    label="기기"; labeljust=l; fontsize=12; style="rounded,dashed"; color="@LINE@";
+    app [label="map-project-client"];
+    gmaps  [label="Google Maps SDK", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
+    kakao  [label="카카오 SDK\n(카카오톡 앱 전환)", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
+    apple  [label="Sign in with Apple\n(iOS)", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
+    device [label="위치 · 카메라 · 음성 인식\n· 나침반 · 사진", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
+    store  [label="기기 저장\nHive · secure storage", fillcolor="@DB_FILL@", color="@DB_EDGE@"];
+  }
+
+  bff [label="map-project-user\n(BFF)"];
+
+  subgraph cluster_behind {
+    label="BFF 뒤 (앱은 직접 부르지 않는다)"; labeljust=l; fontsize=11; style="rounded,dashed"; color="@LINE@";
+    agent [label="map-project-agent\n추천"];
+    hub   [label="map-project-hub\n외부 데이터"];
+    yolo  [label="map-project-yolo\n비전"];
+    extai [label="외부 AI 처리자\n(기능별 동의 뒤, 기본 꺼짐)", style="rounded,filled,dashed", fillcolor="@OPT_FILL@", color="@OPT_EDGE@"];
+    pub   [label="공공·외부 API\n날씨 · 교통 · 장소", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
+  }
+
+  app -> store;
+  app -> device [label="권한"];
+  app -> apple;
+  app -> kakao  [label="네이티브 앱 키"];
+  app -> gmaps  [label="클라이언트 키"];
+  app -> bff    [label="HTTPS /api/v1\n/ws/chat · /ws/vision"];
+  bff -> agent;
+  bff -> hub;
+  bff -> yolo;
+  agent -> extai [style=dashed];
+  yolo  -> extai [style=dashed];
+  hub   -> pub;
+}

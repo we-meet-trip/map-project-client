@@ -1,0 +1,42 @@
+digraph app_structure {
+  graph [rankdir=LR, bgcolor="@BG@", fontname="Pretendard, Noto Sans KR, sans-serif", fontcolor="@FG@",
+         nodesep=0.45, ranksep=1.1, compound=true, newrank=true, pad=0.3];
+  node  [shape=box, style="rounded,filled", fontname="Pretendard, Noto Sans KR, sans-serif", fontsize=12,
+         fontcolor="@FG@", color="@SVC_EDGE@", fillcolor="@SVC_FILL@", penwidth=1.2, margin="0.16,0.07"];
+  edge  [color="@LINE@", fontname="Pretendard, Noto Sans KR, sans-serif", fontsize=10, fontcolor="@FG@", arrowsize=0.7];
+
+  subgraph cluster_app {
+    label="map-project-client (Flutter)"; labeljust=l; fontsize=13; color="@LINE@"; style="rounded,dashed";
+
+    subgraph cluster_features {
+      label="lib/features — 화면 (공용 위젯은 lib/common)"; fontsize=11; style="rounded"; color="@LINE@";
+      trip   [label="여행 만들기 · trip"];
+      place  [label="장소 탐색 · place_explore"];
+      chat   [label="대화방·초대 · chat · invite"];
+      vision [label="카메라 질문 · vision"];
+      auth   [label="로그인·동의 · auth · mypage"];
+    }
+
+    subgraph cluster_core {
+      label="lib/core"; fontsize=11; style="rounded"; color="@LINE@";
+      api    [label="서버 호출\napi (ApiClient)"];
+      maps   [label="지도 어댑터\nmaps"];
+      config [label="주소·신원 결정\nconfig (AppConfig)"];
+      state  [label="전역 상태\nstate (AuthStore 등)"];
+    }
+    local [label="기기 저장\nHive · secure storage", fillcolor="@DB_FILL@", color="@DB_EDGE@"];
+  }
+
+  bff  [label="map-project-user\n(BFF)"];
+  gmap [label="Google Maps SDK", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
+
+  chat -> api   [ltail=cluster_features, xlabel="모든 화면 "];
+  place -> maps [xlabel="지도 화면 "];
+  api -> config [label="기준 주소"];
+  api -> state  [xlabel="토큰 "];
+  state -> local;
+  chat -> local [xlabel="보낼 메시지 "];
+  api -> bff    [label="HTTPS · WebSocket"];
+  maps -> gmap  [label="클라이언트 키"];
+  {rank=same; bff; gmap; local}
+}
