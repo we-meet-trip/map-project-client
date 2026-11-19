@@ -15,10 +15,11 @@ digraph sdk_boundary {
     store  [label="기기 저장\nHive · secure storage", fillcolor="@DB_FILL@", color="@DB_EDGE@"];
   }
 
+  gw [label="API origin\n(통합 실행에서는 관문)", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
   bff [label="map-project-user\n(BFF)"];
 
   subgraph cluster_behind {
-    label="BFF 뒤 (앱은 직접 부르지 않는다)"; labeljust=l; fontsize=11; style="rounded,dashed"; color="@LINE@";
+    label="앱이 주소를 따로 모르는 서비스"; labeljust=l; fontsize=11; style="rounded,dashed"; color="@LINE@";
     agent [label="map-project-agent\n추천"];
     hub   [label="map-project-hub\n외부 데이터"];
     yolo  [label="map-project-yolo\n비전"];
@@ -31,10 +32,12 @@ digraph sdk_boundary {
   app -> apple;
   app -> kakao  [label="네이티브 앱 키"];
   app -> gmaps  [label="클라이언트 키"];
-  app -> bff    [label="HTTPS /api/v1\n/ws/chat · /ws/vision"];
+  app -> gw     [label="HTTPS /api/v1\n/ws/chat · /ws/vision"];
+  gw -> bff     [label="/api/v1 · /ws/chat"];
+  gw -> yolo    [label="/ws/vision"];
+  yolo -> bff   [label="사용 허가", style=dashed];
   bff -> agent;
   bff -> hub;
-  bff -> yolo;
   agent -> extai [style=dashed];
   yolo  -> extai [style=dashed];
   hub   -> pub;

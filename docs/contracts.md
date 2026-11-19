@@ -1,6 +1,6 @@
 # 계약
 
-앱이 부르는 상대는 사용자 BFF [map-project-user](https://github.com/we-meet-trip/map-project-user) 하나다. 경로·필드의 정의는 그 저장소의 `docs/contracts.md` 가 기준이고, 여기에는 앱이 기대하는 것과 앱이 정의하는 것을 적는다.
+앱은 서버 주소(API origin) 하나만 부른다. 그 주소의 `/api/v1`·`/ws/chat` 은 사용자 BFF [map-project-user](https://github.com/we-meet-trip/map-project-user) 가, `/ws/vision` 은 비전 서비스 [map-project-yolo](https://github.com/we-meet-trip/map-project-yolo) 가 받는다. 통합 실행에서는 관문이 경로별로 나눠 보낸다([map-project-infra](https://github.com/we-meet-trip/map-project-infra)). 경로·필드의 정의는 각 저장소의 `docs/contracts.md` 가 기준이고, 여기에는 앱이 기대하는 것과 앱이 정의하는 것을 적는다.
 
 ## 전송
 
@@ -11,7 +11,7 @@
 | 본문 | JSON(UTF-8) | 같은 파일 |
 | 오류 | 응답 본문의 `code`(없으면 `error`)와 `message`(없으면 `detail`)를 읽어 `ApiException` 으로 바꾼다 | `api_client.dart:234-235` |
 | 실시간 채팅 | STOMP over WebSocket, `ws(s)://<API origin>/ws/chat`, 연결 상한 10초 | `lib/core/api/chat_realtime_service.dart` |
-| Vision | WebSocket `ws(s)://<API origin>/ws/vision`. debug 빌드에서만 `CLIENT_VISION_SERVER_HOST` 로 다른 호스트를 쓸 수 있다 | `lib/features/vision/services/vision_ws_service.dart` |
+| Vision | WebSocket `ws(s)://<API origin>/ws/vision`. 받는 쪽은 비전 서비스이고, 비전 서비스가 앱의 로그인 토큰으로 user 의 `POST /api/v1/vision/permit` 을 불러 하루 사용 허가를 받는다. debug 빌드에서만 `CLIENT_VISION_SERVER_HOST` 로 다른 호스트를 쓸 수 있다 | `lib/features/vision/services/vision_ws_service.dart` |
 
 ## 앱이 부르는 경로
 
@@ -37,10 +37,10 @@
 - 이용약관·개인정보·외부 AI 동의의 판(`terms_version`·`privacy_version`·`policy_version`)은 서버가 정한다. 공개본 서버의 값은 `1.0.0` 이다.
 - 앱은 판 문자열의 뜻을 해석하지 않는다. 형식(`^[A-Za-z0-9][A-Za-z0-9._-]{0,31}$`, `lib/core/state/service_consent_store.dart`)만 확인하고, 동의할 때 받은 값을 그대로 돌려보낸다. 판이 바뀌어도 앱을 다시 낼 필요가 없다.
 - 서비스 이용 동의: `POST /api/v1/consents` 본문은 `{terms_version, privacy_version, is_18_or_older: true, terms_accepted: true, privacy_accepted: true}`.
-- 외부 AI 전송 동의: `POST /api/v1/consents/ai/{기능}` 본문은 `{policy_version, accepted: true, include_location, expected_revision}`. 철회는 `DELETE` 에 `expected_revision` 질의 인자를 붙인다. 판이 맞지 않으면 서버가 409 `POLICY_VERSION_MISMATCH` 로 답하고, 앱은 다시 확인하라고 안내한다.
+- 외부 AI 전송 동의: `POST /api/v1/consents/ai/{기능}` 본문은 `{policy_version, accepted: true, include_location, expected_revision}`. 철회는 `DELETE` 에 `expected_revision` 질의 인자를 붙인다. 판이 맞지 않으면 서버가 409 `POLICY_VERSION_MISMATCH` 로, 개정 번호가 맞지 않으면 409 `AI_CONSENT_CONFLICT` 로 답하고, 앱은 다시 확인하라고 안내한다.
 
 ### 초대 링크
-- 발급 응답은 `{token, url, expires_at}` 이다. `url` 은 user 의 초대 기준 주소 + 토큰이다.
+- 발급 응답은 `{token, url, version, expires_at}` 이다. `url` 은 user 의 초대 기준 주소 + 토큰이다. `version` 은 재발급마다 오르는 값으로, 앱은 쓰지 않는다.
 - **배포자는 user 의 초대 기준 주소와 client 의 초대 origin(`CLIENT_INVITE_LINK_ORIGIN`)을 같은 origin 으로 준다. user 의 기준 주소가 비어 있으면 초대 응답의 url 은 null 이고 token 만 유효하다. 이때 client 는 token 으로 앱 전용 주소(`<스킴>://invite/<token>`)를 만들어 공유하며, 이 주소는 앱이 설치된 기기에서만 열린다.**
 - 앱이 받는 링크(`lib/core/services/deep_link_service.dart`):
   - `https://<CLIENT_INVITE_LINK_ORIGIN>/invite/<token>` — origin 을 줬을 때만

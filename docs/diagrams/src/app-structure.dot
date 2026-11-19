@@ -27,7 +27,7 @@ digraph app_structure {
     local [label="기기 저장\nHive · secure storage", fillcolor="@DB_FILL@", color="@DB_EDGE@"];
   }
 
-  bff  [label="map-project-user\n(BFF)"];
+  bff  [label="API origin\n/api/v1 · /ws/chat → map-project-user\n/ws/vision → map-project-yolo"];
   gmap [label="Google Maps SDK", style="rounded,filled,dashed", fillcolor="@EXT_FILL@", color="@EXT_EDGE@"];
 
   chat -> api   [ltail=cluster_features, xlabel="모든 화면 "];

@@ -19,7 +19,7 @@ MAP 는 일곱 저장소로 이루어져 있다. 전체 구조와 한 번에 실
 ## 이름의 뜻
 
 - `map-project` 는 MAP 프로젝트의 공개 저장소 묶음 이름이다. 일곱 저장소가 같은 접두를 쓴다.
-- `client` 는 사람이 직접 쓰는 앱이라는 뜻이다. 서버 쪽 서비스는 모두 사용자 BFF([map-project-user](https://github.com/we-meet-trip/map-project-user)) 뒤에 있고, 앱은 그 BFF 하나만 부른다.
+- `client` 는 사람이 직접 쓰는 앱이라는 뜻이다. 앱은 서버 주소(API origin) 하나만 부른다. 그 주소의 `/api/v1`·`/ws/chat` 은 사용자 BFF([map-project-user](https://github.com/we-meet-trip/map-project-user))가, `/ws/vision` 은 비전 서비스([map-project-yolo](https://github.com/we-meet-trip/map-project-yolo))가 받는다. 통합 실행에서는 관문이 경로별로 나눠 보낸다.
 
 ## 개요
 
@@ -37,7 +37,7 @@ MAP 는 일곱 저장소로 이루어져 있다. 전체 구조와 한 번에 실
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/diagrams/sdk-boundary-dark.svg">
-  <img alt="외부 SDK 경계: 기기 안의 앱은 지도·카카오·Apple SDK 와 기기 기능을 쓰고, 서버 통신은 BFF 하나로 간다. 추천·외부 데이터·비전과 외부 AI 처리자는 BFF 뒤에 있다" src="docs/diagrams/sdk-boundary-light.svg">
+  <img alt="외부 SDK 경계: 기기 안의 앱은 지도·카카오·Apple SDK 와 기기 기능을 쓰고, 서버 통신은 API origin 하나로 간다. 관문이 /api/v1·/ws/chat 은 user 로, /ws/vision 은 비전 서비스로 보내고, 추천·외부 데이터와 외부 AI 처리자는 그 뒤에 있다" src="docs/diagrams/sdk-boundary-light.svg">
 </picture>
 
 계층·처리 순서·타임아웃은 [docs/architecture.md](docs/architecture.md), 그림의 근거는 [docs/diagrams/CLAIMS.md](docs/diagrams/CLAIMS.md) 에 있다.

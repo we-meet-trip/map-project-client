@@ -1,6 +1,6 @@
 # 구조
 
-map-project-client 는 MAP 의 모바일 앱이다. Flutter 하나로 iOS·Android(그리고 웹 빌드)를 만든다. 앱은 사용자 BFF(map-project-user) 하나만 부른다. 추천·외부 데이터·비전은 모두 그 뒤의 서비스가 맡고, 앱에는 서버용 키가 없다.
+map-project-client 는 MAP 의 모바일 앱이다. Flutter 하나로 iOS·Android(그리고 웹 빌드)를 만든다. 앱은 서버 주소(API origin) 하나만 부른다. 그 주소의 REST(`/api/v1`)와 채팅(`/ws/chat`)은 사용자 BFF(map-project-user)가, 카메라 질문(`/ws/vision`)은 비전 서비스(map-project-yolo)가 받는다. 통합 실행에서는 관문이 경로별로 나눠 보낸다. 추천·외부 데이터는 BFF 뒤의 서비스가 맡고, 앱에는 서버용 키가 없다.
 
 ![앱 구조](diagrams/app-structure-light.svg)
 
@@ -25,7 +25,7 @@ map-project-client 는 MAP 의 모바일 앱이다. Flutter 하나로 iOS·Andro
 3. **여행 만들기**: 지역·날짜·이동수단·취향을 단계별로 고른 뒤 `/api/v1/trip/generate` 를 부른다. 추천은 오래 걸릴 수 있어 이 호출만 상한이 길다.
 4. **외부 AI 전송**: 추천·재탐색·리뷰 요약·Vision 처럼 입력이 외부 AI 처리자로 가는 기능은 기능마다 따로 묻는 동의가 있어야 요청한다(`ensureExternalAiConsent`). 기본은 동의 없음이다.
 5. **대화방**: STOMP over WebSocket(`/ws/chat`)으로 실시간 메시지를 받는다. 서버가 받았다고 확인하기 전의 메시지는 환경·계정·방별로 암호화해 기기에 두었다가 다시 보낸다(`chat_outbox_store.dart`).
-6. **Vision**: 카메라 사진과 질문(음성 인식 포함)을 WebSocket(`/ws/vision`)으로 보내고 답을 받는다.
+6. **Vision**: 카메라 사진과 질문(음성 인식 포함)을 같은 API origin 의 WebSocket(`/ws/vision`)으로 보내고 답을 받는다. 이 연결은 비전 서비스가 받고, 비전 서비스는 앱이 보낸 로그인 토큰으로 user 에 하루 사용 허가를 받는다.
 
 ## 서버 주소 정하기
 
@@ -64,7 +64,8 @@ map-project-client 는 MAP 의 모바일 앱이다. Flutter 하나로 iOS·Andro
 
 | 대상 | 쓰는 곳 | 비고 |
 |---|---|---|
-| map-project-user(BFF) | 모든 API·WebSocket | 경로는 [contracts.md](contracts.md) |
+| map-project-user(BFF) | REST(`/api/v1`)·채팅(`/ws/chat`) | 경로는 [contracts.md](contracts.md) |
+| map-project-yolo(비전 서비스) | 카메라 질문(`/ws/vision`) | 같은 API origin 으로 접속한다(관문이 나눠 보냄) |
 | Google Maps SDK(`google_maps_flutter`) | 지도 화면 | 플랫폼별 클라이언트 키. 키가 없으면 지도 없이 동작 |
 | 카카오 SDK(`kakao_flutter_sdk_user`) | 카카오 로그인 | 네이티브 앱 키 |
 | Sign in with Apple(`sign_in_with_apple`) | Apple 로그인 | iOS |
