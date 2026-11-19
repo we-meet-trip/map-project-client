@@ -26,6 +26,10 @@ jobs:
           channel: stable
           cache: true
 
+      # pubspec.yaml 이 선언한 글꼴은 저장소에 없다. 받기가 먼저다(네트워크 필요).
+      - name: fetch fonts
+        run: sh scripts/fetch_fonts.sh
+
       - name: pub get
         run: flutter pub get
 

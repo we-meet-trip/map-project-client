@@ -93,3 +93,6 @@ coverage/
 *.log
 __pycache__/
 *.pyc
+
+# 글꼴은 scripts/fetch_fonts.sh 가 받아 둔다(저장소에 넣지 않는다).
+/assets/fonts/
