@@ -1,0 +1,32 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:map_service_client/core/config/app_environment.dart';
+import 'package:map_service_client/core/services/deep_link_service.dart';
+
+void main() {
+  group('production build identity', () {
+    test('uses production native IDs and rejects test custom links', () {
+      expect(AppEnvironment.applicationId, 'map.project.client');
+      expect(AppEnvironment.kakaoScheme, 'mapauth');
+      expect(AppEnvironment.inviteScheme, 'mapservice');
+      expect(
+        DeepLinkService.routeOf(Uri.parse('mapservice://invite/TOK')),
+        '/invite/TOK',
+      );
+      expect(
+        DeepLinkService.routeOf(Uri.parse('mapproject-dev://invite/TOK')),
+        isNull,
+      );
+      expect(
+        DeepLinkService.routeOf(
+          Uri.parse('https://web.example.test/invite/TOK'),
+        ),
+        isNull,
+      );
+    });
+
+    test('missing production policy origin cannot fall back to test', () {
+      expect(AppEnvironment.publicOrigin, isEmpty);
+      expect(() => AppEnvironment.policyUrl('privacy.html'), throwsStateError);
+    });
+  }, skip: AppEnvironment.name != 'prod');
+}
