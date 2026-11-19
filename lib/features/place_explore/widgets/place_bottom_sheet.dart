@@ -432,7 +432,7 @@ class _PlaceBottomSheetState extends State<PlaceBottomSheet> {
       child: Row(
         children: [
           SvgPicture.asset(
-            'assets/svg/icons/blog_logo.svg',
+            'assets/svg/icons/article.svg',
             width: 22,
             height: 22,
           ),

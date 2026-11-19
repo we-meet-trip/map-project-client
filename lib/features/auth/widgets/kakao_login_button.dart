@@ -28,7 +28,7 @@ class KakaoLoginButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/svg/kakao_login_logo.svg',
+              'assets/svg/icons/chat_bubble.svg',
               width: 20,
               height: 20,
               colorFilter: const ColorFilter.mode(
