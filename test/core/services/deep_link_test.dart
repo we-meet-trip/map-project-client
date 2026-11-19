@@ -42,7 +42,7 @@ void main() {
   test('다른 환경·평문·경로 삽입 링크는 받지 않는다', () {
     for (final link in [
       'https://example.invalid/invite/TOK',
-      'mapservice://invite/TOK',
+      'mapproject://invite/TOK',
       'http://web.example.test/invite/TOK',
       'https://web.example.test:8443/invite/TOK',
       'https://user@web.example.test/invite/TOK',

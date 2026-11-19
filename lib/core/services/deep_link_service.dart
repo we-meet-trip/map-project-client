@@ -47,7 +47,7 @@ class DeepLinkService {
         uri.pathSegments[0] == 'invite') {
       token = uri.pathSegments[1];
     }
-    // 앱 전용 주소: mapservice://invite/TOKEN
+    // 앱 전용 주소: mapproject://invite/TOKEN
     else if (uri.scheme == AppEnvironment.inviteScheme &&
         uri.host == 'invite' &&
         !uri.hasPort &&

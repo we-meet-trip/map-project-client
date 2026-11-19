@@ -27,11 +27,11 @@ def native_identity(environment):
     """환경마다 고정된 네이티브 신원. 빌드값으로 덮어쓸 수 없다."""
     if environment not in ENVIRONMENTS:
         raise ValueError('APP_ENV must be test or prod')
-    suffix = '.test' if environment == 'test' else ''
-    scheme_suffix = '-test' if environment == 'test' else ''
+    suffix = '.dev' if environment == 'test' else ''
+    scheme_suffix = '-dev' if environment == 'test' else ''
     return {
         'NATIVE_APPLICATION_ID': 'map.project.client' + suffix,
-        'INVITE_URL_SCHEME': 'mapservice' + scheme_suffix,
+        'INVITE_URL_SCHEME': 'mapproject' + scheme_suffix,
     }
 
 
@@ -102,7 +102,7 @@ def expected_settings(defines):
 def xcconfig(defines):
     """NativeEnvironment.xcconfig 내용. PRODUCT_BUNDLE_IDENTIFIER 는 프로젝트가 MAP_APPLICATION_ID 에서 읽는다."""
     values = {k: v for k, v in expected_settings(defines).items() if k != 'PRODUCT_BUNDLE_IDENTIFIER'}
-    values['MAP_DISPLAY_NAME'] = 'MAP Test' if values['MAP_APP_ENV'] == 'test' else 'MAP'
+    values['MAP_DISPLAY_NAME'] = 'MAP Dev' if values['MAP_APP_ENV'] == 'test' else 'MAP'
     return '// verify_native_environment.py --print-xcconfig 로 만든 파일. 직접 고치지 않는다.\n' + ''.join(
         f'{key} = {value}\n' for key, value in values.items())
 

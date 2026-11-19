@@ -7,9 +7,9 @@ void main() {
     test('uses production native IDs and rejects test custom links', () {
       expect(AppEnvironment.applicationId, 'map.project.client');
       expect(AppEnvironment.kakaoNativeAppKey, isEmpty);
-      expect(AppEnvironment.inviteScheme, 'mapservice');
+      expect(AppEnvironment.inviteScheme, 'mapproject');
       expect(
-        DeepLinkService.routeOf(Uri.parse('mapservice://invite/TOK')),
+        DeepLinkService.routeOf(Uri.parse('mapproject://invite/TOK')),
         '/invite/TOK',
       );
       expect(

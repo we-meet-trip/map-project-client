@@ -45,7 +45,7 @@
                     android:host="${deepLinkHost}"
                     android:pathPrefix="/invite/" />
             </intent-filter>
-            <!-- 앱 전용 주소 (mapservice://invite/TOKEN). 도메인 검증이 필요 없어
+            <!-- 앱 전용 주소 (mapproject://invite/TOKEN). 도메인 검증이 필요 없어
                  개발 중 확인에 쓰고, iOS 에서는 유일하게 동작하는 길이다. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

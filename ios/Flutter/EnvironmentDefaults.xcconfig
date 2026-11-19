@@ -4,4 +4,4 @@ MAP_APPLICATION_ID = map.project.client.dev
 MAP_INVITE_SCHEME = mapproject-dev
 MAP_KAKAO_NATIVE_KEY = 
 MAP_INVITE_HOST = web.example.test
-MAP_DISPLAY_NAME = MAP Test
+MAP_DISPLAY_NAME = MAP Dev
