@@ -5,7 +5,7 @@ void main() {
   test('default test app cannot share the production native identity', () {
     expect(AppEnvironment.name, 'test');
     expect(AppEnvironment.applicationId, 'map.project.client.dev');
-    expect(AppEnvironment.kakaoScheme, 'mapauth-test');
+    expect(AppEnvironment.kakaoNativeAppKey, isEmpty);
     expect(AppEnvironment.inviteScheme, 'mapproject-dev');
     expect(
       AppEnvironment.policyUrl('privacy.html').toString(),
