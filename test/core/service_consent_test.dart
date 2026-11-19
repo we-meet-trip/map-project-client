@@ -111,7 +111,7 @@ void main() {
   );
 
   testWidgets('새 정책 버전은 앱 교체 없이 읽고 각각 재동의할 수 있다', (tester) async {
-    var version = '2026-10-01';
+    var version = '1.0.0';
     var entered = 0;
     final acceptedVersions = <String>[];
     final store = fakeStore();
@@ -129,12 +129,12 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.textContaining('이용약관 2026-10-01'), findsOneWidget);
+    expect(find.textContaining('이용약관 1.0.0'), findsOneWidget);
     await check(tester, 'policy-adult');
     await check(tester, 'policy-terms');
     await check(tester, 'policy-privacy');
     // An in-flight server refresh can revise the policy while the screen remains open.
-    version = '2026-10-02';
+    version = '1.0.1';
     await store.refresh(force: true);
     await tester.pumpAndSettle();
     expect(store.canAccess, isFalse);
@@ -147,7 +147,7 @@ void main() {
     await tester.ensureVisible(submit);
     await tester.tap(submit);
     await tester.pumpAndSettle();
-    expect(acceptedVersions, ['2026-10-02']);
+    expect(acceptedVersions, ['1.0.1']);
     expect(entered, 1);
     expect(store.canAccess, isTrue);
     await tester.pumpWidget(const SizedBox());
@@ -165,7 +165,7 @@ void main() {
     }
     expect(
       ServiceConsentStatus.fromJson(
-        receipt(accepted: true, version: '2026-10-01'),
+        receipt(accepted: true, version: '1.0.0'),
       ).permitsService,
       isTrue,
     );

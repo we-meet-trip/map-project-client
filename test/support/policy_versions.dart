@@ -4,5 +4,5 @@
 /// 그대로 되돌려 보낸다. 그래서 여기 값은 형식만 맞으면 되고, 실제 게시본의
 /// 판을 따라갈 필요가 없다 — 따라가게 만들면 문안을 개정할 때마다 시험이
 /// 같이 깨진다.
-const servicePolicyVersion = '2026-09-15';
-const servicePrivacyVersion = '2026-09-15';
+const servicePolicyVersion = '1.0.0';
+const servicePrivacyVersion = '1.0.0';

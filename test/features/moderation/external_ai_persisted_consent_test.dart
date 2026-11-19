@@ -23,7 +23,7 @@ class _Server implements ApiClient {
     return [
       {
         'scope': 'trip',
-        'policy_version': '2026-09-08.1',
+        'policy_version': '1.0.0',
         'accepted': accepted,
         'include_location': false,
         'revision': revision,
@@ -114,7 +114,7 @@ void main() {
     expect(server.accepted, isTrue);
     // 서버가 준 판과 개정 번호를 그대로 되돌려 보내야 받아들여진다.
     expect(server.grantBody, {
-      'policy_version': '2026-09-08.1',
+      'policy_version': '1.0.0',
       'accepted': true,
       'include_location': false,
       'expected_revision': 0,
