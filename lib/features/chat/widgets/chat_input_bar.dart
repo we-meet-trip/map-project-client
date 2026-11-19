@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../../common/theme/app_colors.dart';
+import '../chat_limits.dart';
 
 class ChatInputBar extends StatefulWidget {
   const ChatInputBar({super.key, required this.onSend});
@@ -61,6 +63,9 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 alignment: Alignment.centerLeft,
                 child: TextField(
                   controller: _controller,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(kChatMessageMaxLength),
+                  ],
                   style: const TextStyle(fontSize: 14),
                   decoration: const InputDecoration(
                     hintText: '메시지를 입력하세요',

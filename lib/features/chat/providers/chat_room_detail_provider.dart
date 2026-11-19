@@ -10,6 +10,7 @@ import '../../../data/models/chat_message.dart';
 import '../../../data/repositories/api_chat_repository.dart';
 import '../../../data/repositories/chat_repository.dart';
 import '../../../data/repositories/invite_link_repository.dart';
+import '../chat_limits.dart';
 
 class ChatRoomDetailProvider extends ChangeNotifier {
   ChatRoomDetailProvider(
@@ -305,6 +306,11 @@ class ChatRoomDetailProvider extends ChangeNotifier {
 
   Future<void> sendMessage(String text) async {
     if (!_active || isReadOnly || text.trim().isEmpty) return;
+    if (text.length > kChatMessageMaxLength) {
+      _sendError = '메시지는 $kChatMessageMaxLength자까지 보낼 수 있어요.';
+      _notify();
+      return;
+    }
     try {
       await _restore();
       if (!_active) return;
