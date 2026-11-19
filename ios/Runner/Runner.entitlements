@@ -8,7 +8,7 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:$(MAP_INVITE_HOST)</string>
+		<string>applinks:$(CLIENT_INVITE_HOST)</string>
 	</array>
 </dict>
 </plist>

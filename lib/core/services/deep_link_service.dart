@@ -36,7 +36,7 @@ class DeepLinkService {
   /// 오고, 앱 전용 주소는 검증이 필요 없어 iOS 와 개발 중 확인에 쓴다. 둘의
   /// 이름이 어긋나면 한쪽 기기에서만 링크가 조용히 무시된다.
   ///
-  /// [origin] 은 시험에서만 바꾼다. 기본값은 빌드값 INVITE_LINK_ORIGIN 이고, 비어 있으면
+  /// [origin] 은 시험에서만 바꾼다. 기본값은 빌드값 CLIENT_INVITE_LINK_ORIGIN 이고, 비어 있으면
   /// https 초대 링크를 받지 않는다(앱 전용 주소만 받는다).
   static String? routeOf(Uri uri, {String origin = inviteOrigin}) {
     if (!const {'test', 'prod'}.contains(AppEnvironment.name)) return null;

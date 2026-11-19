@@ -5,7 +5,7 @@
 class AppEnvironment {
   AppEnvironment._();
 
-  static const name = String.fromEnvironment('APP_ENV', defaultValue: 'test');
+  static const name = String.fromEnvironment('CLIENT_APP_ENV', defaultValue: 'test');
   static const applicationId = name == 'test'
       ? 'map.project.client.dev'
       : 'map.project.client';
@@ -14,10 +14,10 @@ class AppEnvironment {
   /// 카카오 SDK 가 쓰는 네이티브 앱 키. 커스텀 스킴(kakao{키}://oauth)에 그대로
   /// 실리는 공개 값이라 앱에 들어간다. 카카오는 이 키를 번들 ID 에 묶어 통제한다.
   static const kakaoNativeAppKey = String.fromEnvironment(
-    'KAKAO_NATIVE_APP_KEY',
+    'CLIENT_KAKAO_NATIVE_APP_KEY',
   );
-  static const inviteOrigin = String.fromEnvironment('INVITE_LINK_ORIGIN');
-  static const publicOrigin = String.fromEnvironment('PUBLIC_SITE_ORIGIN');
+  static const inviteOrigin = String.fromEnvironment('CLIENT_INVITE_LINK_ORIGIN');
+  static const publicOrigin = String.fromEnvironment('CLIENT_PUBLIC_SITE_ORIGIN');
 
   static const _documents = {
     'privacy.html',
@@ -51,7 +51,7 @@ class AppEnvironment {
     }
     final origin = _siteOrigin(site);
     if (origin == null) {
-      throw StateError('PUBLIC_SITE_ORIGIN is not configured for this build');
+      throw StateError('CLIENT_PUBLIC_SITE_ORIGIN is not configured for this build');
     }
     return origin.replace(path: '/legal/$document');
   }

@@ -9,10 +9,10 @@ enum MapPlatformKind { android, ios, web, unsupported }
 String resolveGoogleMapsKey(
   MapPlatformKind target, {
   String androidKey = const String.fromEnvironment(
-    'GOOGLE_MAPS_ANDROID_API_KEY',
+    'CLIENT_GOOGLE_MAPS_ANDROID_API_KEY',
   ),
-  String iosKey = const String.fromEnvironment('GOOGLE_MAPS_IOS_API_KEY'),
-  String webKey = const String.fromEnvironment('GOOGLE_MAPS_WEB_API_KEY'),
+  String iosKey = const String.fromEnvironment('CLIENT_GOOGLE_MAPS_IOS_API_KEY'),
+  String webKey = const String.fromEnvironment('CLIENT_GOOGLE_MAPS_WEB_API_KEY'),
 }) {
   final key = switch (target) {
     MapPlatformKind.android => androidKey,

@@ -6,7 +6,7 @@
 //
 // 실행:
 //   flutter test integration_test/app_screens_test.dart \
-//     -d <device> --dart-define=API_BASE_URL=https://… \
+//     -d <device> --dart-define=CLIENT_API_BASE_URL=https://… \
 //     --dart-define=TEST_EMAIL=… --dart-define=TEST_PASSWORD=…
 //
 // 시험 계정은 실행할 때 넘긴다. 저장소에 두면 서버를 아무나 열 수 있다.
@@ -103,12 +103,12 @@ void main() {
       // 어느 서버를 향해 시험하는지는 실행할 때 정한다. 한 곳을 코드에 박아
       // 두면 다른 환경에서는 통과할 수 없고, 그 환경을 시험하려는 사람이
       // 시험 자체를 고쳐야 한다.
-      const expected = String.fromEnvironment('API_BASE_URL');
+      const expected = String.fromEnvironment('CLIENT_API_BASE_URL');
       expect(kApiBaseUrl, isNotEmpty);
       expect(
         expected,
         isNotEmpty,
-        reason: '--dart-define=API_BASE_URL 로 시험할 서버를 지정해야 한다',
+        reason: '--dart-define=CLIENT_API_BASE_URL 로 시험할 서버를 지정해야 한다',
       );
       expect(
         kApiBaseUrl,

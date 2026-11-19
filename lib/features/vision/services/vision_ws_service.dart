@@ -57,7 +57,7 @@ class VisionWsService {
     final scheme = base.scheme == 'https' ? 'wss' : 'ws';
     // 배포본 토큰은 앱의 API origin 밖으로 보내지 않는다.
     final host = kDebugMode
-        ? const String.fromEnvironment('VISION_SERVER_HOST')
+        ? const String.fromEnvironment('CLIENT_VISION_SERVER_HOST')
         : '';
     if (host.isNotEmpty) return Uri.parse('$scheme://$host/ws/vision');
     return base.replace(

@@ -9,7 +9,7 @@ Dart 쪽은 `--dart-define` 으로 받은 값이고, 네이티브 쪽은 xcconfi
 다른 환경(prod 등)으로 빌드할 때는 `--print-xcconfig` 로 맞는 설정을 만들어
 `ios/Flutter/NativeEnvironment.xcconfig`(git 에서 제외됨)에 저장한다.
     python3 ios/Flutter/verify_native_environment.py --print-xcconfig \
-        APP_ENV=prod INVITE_LINK_ORIGIN=https://example.com KAKAO_NATIVE_APP_KEY=...
+        CLIENT_APP_ENV=prod CLIENT_INVITE_LINK_ORIGIN=https://example.com CLIENT_KAKAO_NATIVE_APP_KEY=...
 """
 import base64
 import ipaddress
@@ -19,7 +19,7 @@ import sys
 from urllib.parse import urlsplit
 
 ENVIRONMENTS = ('test', 'prod')
-# INVITE_LINK_ORIGIN 을 주지 않은 빌드의 앱 링크 도메인. 결코 존재하지 않는 예약
+# CLIENT_INVITE_LINK_ORIGIN 을 주지 않은 빌드의 앱 링크 도메인. 결코 존재하지 않는 예약
 # 도메인(.invalid)이라 도메인 검증이 일어나지 않고, 초대는 앱 전용 스킴으로만 열린다.
 # Android 빌드 파일(android/app/build.gradle.kts)과 같은 값이다.
 UNSET_INVITE_HOST = 'invite.example.invalid'
@@ -28,12 +28,12 @@ UNSET_INVITE_HOST = 'invite.example.invalid'
 def native_identity(environment):
     """환경마다 고정된 네이티브 신원. 빌드값으로 덮어쓸 수 없다."""
     if environment not in ENVIRONMENTS:
-        raise ValueError('APP_ENV must be test or prod')
+        raise ValueError('CLIENT_APP_ENV must be test or prod')
     suffix = '.dev' if environment == 'test' else ''
     scheme_suffix = '-dev' if environment == 'test' else ''
     return {
-        'NATIVE_APPLICATION_ID': 'map.project.client' + suffix,
-        'INVITE_URL_SCHEME': 'mapproject' + scheme_suffix,
+        'CLIENT_NATIVE_APPLICATION_ID': 'map.project.client' + suffix,
+        'CLIENT_INVITE_URL_SCHEME': 'mapproject' + scheme_suffix,
     }
 
 
@@ -61,47 +61,47 @@ def invite_host(origin):
         uri = urlsplit(origin)
         port = uri.port
     except ValueError:
-        raise ValueError('INVITE_LINK_ORIGIN: malformed URL') from None
+        raise ValueError('CLIENT_INVITE_LINK_ORIGIN: malformed URL') from None
     host = (uri.hostname or '').lower()
     if (uri.scheme != 'https' or not host or uri.username is not None or uri.password is not None
             or uri.query or uri.fragment or uri.path not in ('', '/') or port not in (None, 443)):
-        raise ValueError('INVITE_LINK_ORIGIN: an https origin on the default port is required')
+        raise ValueError('CLIENT_INVITE_LINK_ORIGIN: an https origin on the default port is required')
     try:
         ipaddress.ip_address(host)
     except ValueError:
         pass
     else:
-        raise ValueError('INVITE_LINK_ORIGIN: native links require a DNS hostname')
+        raise ValueError('CLIENT_INVITE_LINK_ORIGIN: native links require a DNS hostname')
     if '.' not in host or not all(re.fullmatch(r'[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?', label)
                                   for label in host.split('.')):
-        raise ValueError('INVITE_LINK_ORIGIN: native links require a DNS hostname')
+        raise ValueError('CLIENT_INVITE_LINK_ORIGIN: native links require a DNS hostname')
     return host
 
 
 def expected_settings(defines):
     """Dart 빌드값에서 Xcode 빌드 설정이 가져야 할 값을 만든다."""
-    environment = defines.get('APP_ENV', 'test')
+    environment = defines.get('CLIENT_APP_ENV', 'test')
     identity = native_identity(environment)
     for field, value in identity.items():
         if field in defines and defines[field] != value:
-            raise ValueError(f'{field} disagrees with APP_ENV')
-    kakao_key = defines.get('KAKAO_NATIVE_APP_KEY', '').strip()
+            raise ValueError(f'{field} disagrees with CLIENT_APP_ENV')
+    kakao_key = defines.get('CLIENT_KAKAO_NATIVE_APP_KEY', '').strip()
     if kakao_key and not re.fullmatch(r'[A-Za-z0-9]+', kakao_key):
-        raise ValueError('KAKAO_NATIVE_APP_KEY: invalid client key format')
+        raise ValueError('CLIENT_KAKAO_NATIVE_APP_KEY: invalid client key format')
     return {
-        'MAP_APP_ENV': environment,
-        'MAP_APPLICATION_ID': identity['NATIVE_APPLICATION_ID'],
-        'PRODUCT_BUNDLE_IDENTIFIER': identity['NATIVE_APPLICATION_ID'],
-        'MAP_INVITE_SCHEME': identity['INVITE_URL_SCHEME'],
-        'MAP_KAKAO_NATIVE_KEY': kakao_key,
-        'MAP_INVITE_HOST': invite_host(defines.get('INVITE_LINK_ORIGIN', '')),
+        'CLIENT_APP_ENV': environment,
+        'CLIENT_APPLICATION_ID': identity['CLIENT_NATIVE_APPLICATION_ID'],
+        'PRODUCT_BUNDLE_IDENTIFIER': identity['CLIENT_NATIVE_APPLICATION_ID'],
+        'CLIENT_INVITE_SCHEME': identity['CLIENT_INVITE_URL_SCHEME'],
+        'CLIENT_KAKAO_NATIVE_KEY': kakao_key,
+        'CLIENT_INVITE_HOST': invite_host(defines.get('CLIENT_INVITE_LINK_ORIGIN', '')),
     }
 
 
 def xcconfig(defines):
-    """NativeEnvironment.xcconfig 내용. PRODUCT_BUNDLE_IDENTIFIER 는 프로젝트가 MAP_APPLICATION_ID 에서 읽는다."""
+    """NativeEnvironment.xcconfig 내용. PRODUCT_BUNDLE_IDENTIFIER 는 프로젝트가 CLIENT_APPLICATION_ID 에서 읽는다."""
     values = {k: v for k, v in expected_settings(defines).items() if k != 'PRODUCT_BUNDLE_IDENTIFIER'}
-    values['MAP_DISPLAY_NAME'] = 'MAP Dev' if values['MAP_APP_ENV'] == 'test' else 'MAP'
+    values['CLIENT_DISPLAY_NAME'] = 'MAP Dev' if values['CLIENT_APP_ENV'] == 'test' else 'MAP'
     return '// verify_native_environment.py --print-xcconfig 로 만든 파일. 직접 고치지 않는다.\n' + ''.join(
         f'{key} = {value}\n' for key, value in values.items())
 

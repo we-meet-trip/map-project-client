@@ -14,10 +14,10 @@ import 'endpoint_policy.dart';
 /// 바뀌면 그 파일만 갈아 끼우면 되고, 앱을 다시 만들거나 다시 깔 필요가 없다.
 ///
 /// 정하는 순서:
-///   1. 빌드 때 `--dart-define=API_BASE_URL` 로 넘어온 값 — 개발용 고정 주소다.
+///   1. 빌드 때 `--dart-define=CLIENT_API_BASE_URL` 로 넘어온 값 — 개발용 고정 주소다.
 ///      이 값이 있으면 원격 조회 자체를 하지 않는다. 개발 중에 원격 값이
 ///      끼어들면 방금 띄운 로컬 서버 대신 엉뚱한 곳을 보게 된다.
-///   2. 원격 설정 파일의 값 — `--dart-define=APP_CONFIG_URL` 로 위치를 줬을 때만.
+///   2. 원격 설정 파일의 값 — `--dart-define=CLIENT_APP_CONFIG_URL` 로 위치를 줬을 때만.
 ///   3. 마지막으로 성공했던 값(기기에 남겨 둔다) — 원격을 못 읽는 상황,
 ///      이를테면 비행기 모드에서 켰을 때 쓴다.
 ///   4. 로컬 기본값(`http://localhost:8080`).
@@ -33,30 +33,30 @@ class AppConfig {
   static final AppConfig instance = AppConfig._();
 
   static const String environment = String.fromEnvironment(
-    'APP_ENV',
+    'CLIENT_APP_ENV',
     defaultValue: 'test',
   );
 
   /// 릴리스 빌드가 믿을 서버 origin 목록(쉼표 구분). 기본값은 비어 있다.
   static const String _allowedOrigins = String.fromEnvironment(
-    'API_ALLOWED_ORIGINS',
+    'CLIENT_API_ALLOWED_ORIGINS',
   );
 
   /// 빌드 때 주소를 넘겼는지. 넘겼다면 그 값이 무조건 이긴다.
-  static const bool _hasInjectedBaseUrl = bool.hasEnvironment('API_BASE_URL');
-  static const String _injectedBaseUrl = String.fromEnvironment('API_BASE_URL');
+  static const bool _hasInjectedBaseUrl = bool.hasEnvironment('CLIENT_API_BASE_URL');
+  static const String _injectedBaseUrl = String.fromEnvironment('CLIENT_API_BASE_URL');
 
   /// 현재 주소를 적어 두는 곳. 값 자체가 아니라 위치가 고정이다. 비어 있으면
   /// 원격 조회를 하지 않는다(기본값).
   static const String _remoteConfigUrl = String.fromEnvironment(
-    'APP_CONFIG_URL',
+    'CLIENT_APP_CONFIG_URL',
   );
 
   static const _policy = EndpointPolicy(
     environment: environment,
     allowedOrigins: _allowedOrigins,
     configUrl: _remoteConfigUrl,
-    explicitOrigins: bool.hasEnvironment('API_ALLOWED_ORIGINS'),
+    explicitOrigins: bool.hasEnvironment('CLIENT_API_ALLOWED_ORIGINS'),
   );
 
   static const String _fallbackBaseUrl = 'http://localhost:8080';

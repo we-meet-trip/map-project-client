@@ -17,8 +17,8 @@ def module(name, path):
 
 ios = module('ios', 'ios/Flutter/verify_native_environment.py')
 
-PROD = {'APP_ENV': 'prod', 'INVITE_LINK_ORIGIN': 'https://invite.example.com',
-        'KAKAO_NATIVE_APP_KEY': 'abc123'}
+PROD = {'CLIENT_APP_ENV': 'prod', 'CLIENT_INVITE_LINK_ORIGIN': 'https://invite.example.com',
+        'CLIENT_KAKAO_NATIVE_APP_KEY': 'abc123'}
 
 
 def encoded(defines):
@@ -28,7 +28,7 @@ def encoded(defines):
 def native(defines):
     settings = dict(line.split(' = ', 1) for line in ios.xcconfig(defines).splitlines()
                     if ' = ' in line)
-    settings['PRODUCT_BUNDLE_IDENTIFIER'] = settings['MAP_APPLICATION_ID']
+    settings['PRODUCT_BUNDLE_IDENTIFIER'] = settings['CLIENT_APPLICATION_ID']
     settings['DART_DEFINES'] = encoded(defines)
     return settings
 
@@ -37,7 +37,7 @@ class MobileEnvironmentTest(unittest.TestCase):
     def test_native_identity_is_distinct_and_cannot_be_overridden(self):
         for environment in ('test', 'prod'):
             identity = ios.native_identity(environment)
-            defines = {**(PROD if environment == 'prod' else {}), 'APP_ENV': environment}
+            defines = {**(PROD if environment == 'prod' else {}), 'CLIENT_APP_ENV': environment}
             ios.expected_settings({**defines, **identity})
             for key in identity:
                 with self.assertRaises(ValueError):
@@ -50,8 +50,8 @@ class MobileEnvironmentTest(unittest.TestCase):
     def test_xcode_gate_rejects_stale_native_config_for_every_identity_field(self):
         settings = native(PROD)
         ios.verify(settings)
-        for key in ('MAP_APP_ENV', 'MAP_APPLICATION_ID', 'PRODUCT_BUNDLE_IDENTIFIER',
-                    'MAP_INVITE_SCHEME', 'MAP_KAKAO_NATIVE_KEY', 'MAP_INVITE_HOST'):
+        for key in ('CLIENT_APP_ENV', 'CLIENT_APPLICATION_ID', 'PRODUCT_BUNDLE_IDENTIFIER',
+                    'CLIENT_INVITE_SCHEME', 'CLIENT_KAKAO_NATIVE_KEY', 'CLIENT_INVITE_HOST'):
             with self.subTest(key=key), self.assertRaises(ValueError):
                 ios.verify({**settings, key: 'stale-test-value'})
         with self.assertRaises(ValueError):
@@ -70,14 +70,14 @@ class MobileEnvironmentTest(unittest.TestCase):
 
     def test_kakao_key_format_is_checked(self):
         with self.assertRaises(ValueError):
-            ios.expected_settings({**PROD, 'KAKAO_NATIVE_APP_KEY': 'not a key'})
+            ios.expected_settings({**PROD, 'CLIENT_KAKAO_NATIVE_APP_KEY': 'not a key'})
 
     def test_print_xcconfig_covers_every_build_setting_the_gate_reads(self):
         text = ios.xcconfig(PROD)
-        for key in ('MAP_APP_ENV', 'MAP_APPLICATION_ID', 'MAP_INVITE_SCHEME',
-                    'MAP_KAKAO_NATIVE_KEY', 'MAP_INVITE_HOST', 'MAP_DISPLAY_NAME'):
+        for key in ('CLIENT_APP_ENV', 'CLIENT_APPLICATION_ID', 'CLIENT_INVITE_SCHEME',
+                    'CLIENT_KAKAO_NATIVE_KEY', 'CLIENT_INVITE_HOST', 'CLIENT_DISPLAY_NAME'):
             self.assertIn(f'{key} = ', text)
-        self.assertEqual(ios.main(['--print-xcconfig', 'APP_ENV=staging']), 1)
+        self.assertEqual(ios.main(['--print-xcconfig', 'CLIENT_APP_ENV=staging']), 1)
 
     def test_native_sources_consume_generated_identity(self):
         manifest = (ROOT / 'android/app/src/main/AndroidManifest.xml').read_text()
@@ -85,12 +85,12 @@ class MobileEnvironmentTest(unittest.TestCase):
         self.assertIn('android:scheme="kakao${kakaoNativeAppKey}"', manifest)
         info = plistlib.loads((ROOT / 'ios/Runner/Info.plist').read_bytes())
         self.assertEqual([entry['CFBundleURLSchemes'][0] for entry in info['CFBundleURLTypes']],
-                         ['kakao$(MAP_KAKAO_NATIVE_KEY)', '$(MAP_INVITE_SCHEME)'])
+                         ['kakao$(CLIENT_KAKAO_NATIVE_KEY)', '$(CLIENT_INVITE_SCHEME)'])
         # 카카오톡 설치 확인은 미리 밝힌 스킴만 조회할 수 있다.
         self.assertIn('kakaokompassauth', info['LSApplicationQueriesSchemes'])
         entitlements = plistlib.loads((ROOT / 'ios/Runner/Runner.entitlements').read_bytes())
         self.assertEqual(entitlements['com.apple.developer.associated-domains'],
-                         ['applinks:$(MAP_INVITE_HOST)'])
+                         ['applinks:$(CLIENT_INVITE_HOST)'])
         self.assertIn('verify_native_environment.py', (ROOT / 'ios/Runner.xcodeproj/project.pbxproj').read_text())
 
     def test_local_defaults_pass_the_gate(self):
@@ -99,7 +99,7 @@ class MobileEnvironmentTest(unittest.TestCase):
             if '=' in line and not line.lstrip().startswith('//'):
                 key, value = line.split('=', 1)
                 defaults[key.strip()] = value.strip()
-        defaults['PRODUCT_BUNDLE_IDENTIFIER'] = defaults['MAP_APPLICATION_ID']
+        defaults['PRODUCT_BUNDLE_IDENTIFIER'] = defaults['CLIENT_APPLICATION_ID']
         defaults['DART_DEFINES'] = ''
         ios.verify(defaults)
 

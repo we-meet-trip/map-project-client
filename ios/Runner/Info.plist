@@ -30,7 +30,7 @@
 		<string>ko</string>
 	</array>
 	<key>CFBundleDisplayName</key>
-	<string>$(MAP_DISPLAY_NAME)</string>
+	<string>$(CLIENT_DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -67,7 +67,7 @@
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>kakao$(MAP_KAKAO_NATIVE_KEY)</string>
+				<string>kakao$(CLIENT_KAKAO_NATIVE_KEY)</string>
 			</array>
 		</dict>
 		<dict>
@@ -77,7 +77,7 @@
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).invite</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>$(MAP_INVITE_SCHEME)</string>
+				<string>$(CLIENT_INVITE_SCHEME)</string>
 			</array>
 		</dict>
 	</array>

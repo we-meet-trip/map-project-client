@@ -1,8 +1,8 @@
 import 'package:url_launcher/url_launcher.dart';
 
-/// 문의·신고 메일의 수신 주소. 빌드할 때 `--dart-define=SUPPORT_EMAIL=...` 로 넣는다.
+/// 문의·신고 메일의 수신 주소. 빌드할 때 `--dart-define=CLIENT_SUPPORT_EMAIL=...` 로 넣는다.
 /// 공개본 기본값은 비어 있고, 비어 있으면 메일 문의 버튼을 감춘다.
-const String supportEmail = String.fromEnvironment('SUPPORT_EMAIL');
+const String supportEmail = String.fromEnvironment('CLIENT_SUPPORT_EMAIL');
 
 /// 문의 메일 주소를 줬는지.
 const bool hasSupportEmail = supportEmail != '';

@@ -41,37 +41,37 @@ if (keystorePropertiesFile.exists()) {
 val keystoreFile = keystoreProperties.getProperty("storeFile")?.let { file(it) }
 val hasReleaseSigning = keystoreFile != null && keystoreFile.exists()
 
-val appEnvironment = dartDefines["APP_ENV"] ?: "test"
-require(appEnvironment in setOf("test", "prod")) { "APP_ENV must be test or prod" }
+val appEnvironment = dartDefines["CLIENT_APP_ENV"] ?: "test"
+require(appEnvironment in setOf("test", "prod")) { "CLIENT_APP_ENV must be test or prod" }
 val nativeApplicationId = if (appEnvironment == "test") "map.project.client.dev" else "map.project.client"
 val inviteScheme = if (appEnvironment == "test") "mapproject-dev" else "mapproject"
 // 카카오 SDK 가 쓰는 커스텀 스킴(kakao{키}://oauth)에 그대로 실리는 공개 값이다.
 // 비면 복귀 주소가 'kakao://oauth' 가 되어 카카오 로그인만 조용히 동작하지 않는다.
 // 출시 빌드에서 그 상태가 통과하지 않도록 여기서 막는다.
-val kakaoNativeAppKey = dartDefines["KAKAO_NATIVE_APP_KEY"] ?: ""
+val kakaoNativeAppKey = dartDefines["CLIENT_KAKAO_NATIVE_APP_KEY"] ?: ""
 require(appEnvironment != "prod" || kakaoNativeAppKey.isNotEmpty()) {
-    "KAKAO_NATIVE_APP_KEY is required for a production build"
+    "CLIENT_KAKAO_NATIVE_APP_KEY is required for a production build"
 }
-mapOf("NATIVE_APPLICATION_ID" to nativeApplicationId,
-    "INVITE_URL_SCHEME" to inviteScheme).forEach { (name, expected) ->
-    require(dartDefines[name] == null || dartDefines[name] == expected) { "$name does not match APP_ENV" }
+mapOf("CLIENT_NATIVE_APPLICATION_ID" to nativeApplicationId,
+    "CLIENT_INVITE_URL_SCHEME" to inviteScheme).forEach { (name, expected) ->
+    require(dartDefines[name] == null || dartDefines[name] == expected) { "$name does not match CLIENT_APP_ENV" }
 }
 // 초대 링크를 받을 https origin. 주지 않으면 앱 링크(https)는 쓰지 않고 앱 전용
 // 스킴만 쓴다. 매니페스트 자리는 결코 존재하지 않는 예약 도메인(.invalid)으로 채워
 // 도메인 검증이 일어나지 않게 한다. iOS 의 EnvironmentDefaults.xcconfig 와 같은 값이다.
-val inviteOrigin = dartDefines["INVITE_LINK_ORIGIN"].orEmpty()
+val inviteOrigin = dartDefines["CLIENT_INVITE_LINK_ORIGIN"].orEmpty()
 val deepLinkHost = if (inviteOrigin.isEmpty()) "invite.example.invalid" else {
     val inviteUri = requireNotNull(runCatching { URI(inviteOrigin) }.getOrNull()) {
-        "Invalid INVITE_LINK_ORIGIN"
+        "Invalid CLIENT_INVITE_LINK_ORIGIN"
     }
     require(inviteUri.scheme == "https" && !inviteUri.host.isNullOrEmpty()
             && inviteUri.rawUserInfo == null && inviteUri.rawQuery == null && inviteUri.rawFragment == null
             && (inviteUri.rawPath.isNullOrEmpty() || inviteUri.rawPath == "/")
-            && (inviteUri.port == -1 || inviteUri.port == 443)) { "Invalid INVITE_LINK_ORIGIN" }
+            && (inviteUri.port == -1 || inviteUri.port == 443)) { "Invalid CLIENT_INVITE_LINK_ORIGIN" }
     inviteUri.host
 }
 
-val googleMapsApiKey = dartDefines["GOOGLE_MAPS_ANDROID_API_KEY"]?.trim() ?: ""
+val googleMapsApiKey = dartDefines["CLIENT_GOOGLE_MAPS_ANDROID_API_KEY"]?.trim() ?: ""
 
 android {
     namespace = "map.project.client"

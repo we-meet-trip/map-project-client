@@ -11,7 +11,7 @@ void main() {
       DeepLinkService.routeOf(Uri.parse('$origin/invite/TOK'), origin: origin),
       '/invite/TOK',
     );
-    // 기본 빌드는 INVITE_LINK_ORIGIN 이 비어 있어 https 초대를 받지 않는다.
+    // 기본 빌드는 CLIENT_INVITE_LINK_ORIGIN 이 비어 있어 https 초대를 받지 않는다.
     expect(DeepLinkService.inviteOrigin, isEmpty);
     expect(DeepLinkService.routeOf(Uri.parse('$origin/invite/TOK')), isNull);
   });

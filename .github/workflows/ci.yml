@@ -40,7 +40,7 @@ jobs:
         run: flutter test
 
       - name: production environment isolation
-        run: flutter test test/core/app_environment_prod_test.dart --dart-define=APP_ENV=prod
+        run: flutter test test/core/app_environment_prod_test.dart --dart-define=CLIENT_APP_ENV=prod
 
       - name: analyze
         run: flutter analyze

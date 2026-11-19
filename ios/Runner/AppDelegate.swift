@@ -14,7 +14,7 @@ import GoogleMaps
       for item in encoded.split(separator: ",") {
         guard let data = Data(base64Encoded: String(item)),
               let value = String(data: data, encoding: .utf8) else { continue }
-        let prefix = "GOOGLE_MAPS_IOS_API_KEY="
+        let prefix = "CLIENT_GOOGLE_MAPS_IOS_API_KEY="
         if value.hasPrefix(prefix) {
           let key = String(value.dropFirst(prefix.count)).trimmingCharacters(in: .whitespacesAndNewlines)
           if !key.isEmpty { GMSServices.provideAPIKey(key) }
